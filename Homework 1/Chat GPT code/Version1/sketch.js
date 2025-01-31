@@ -1,3 +1,4 @@
+//demonstration
 //This is the first version Chat GPT created re: Favorite food
 function setup() {
     createCanvas(800, 600);
