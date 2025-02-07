@@ -25,9 +25,17 @@ var tTy1=180;
 //Tater Tot movement variables
 var goLeft=false;
 var goUp=false;
+//image 
+var img;
+function preload(){
+img = loadImage ('images/bulldog.jpg');
+
+}
+
 
 function setup() {
   createCanvas(400, 400);
+  Image(img,0,0);
 }
 
 function draw() {
