@@ -1,4 +1,4 @@
-/*this is my CC2 HW2 assignment
+/*this is my CC2 HW3 assignment
 */
 //Hot Dog variables
 var hDx1 = 100;
@@ -18,27 +18,35 @@ var hDy41 = 96;
 var hDy51 = 102;
 
 //Tater Tot variables
-var tTx = 180;
-var tTy = 200;
-var tTx1 = 80;
-var tTy1 = 180;
+var tTx=180;
+var tTy=200;
+var tTx1=80;
+var tTy1=180;
 //Tater Tot movement variables
-var goLeft = false;
-var goUp = false;
+var goLeft=false;
+var goUp=false;
+//image 
+var img;
+function preload(){
+img = loadImage ("images/bulldog.jpg");
+
+}
 
 
 function setup() {
   createCanvas(400, 400);
-  ;
+  
 }
 
 function draw() {
   background(115, 60, 11);
 
-  fill(0);
+  Image(img,0,0);
+
+  fill(0);  
   textSize(32);
-  text('Hot Diggity', 20, 50);
-  text('Chris Leder', 225, 375);
+  text ('Hot Diggity',20,50);
+  text('Chris Leder',225, 375);
   //plate
   {
     stroke(29, 86, 167);
@@ -102,29 +110,37 @@ function draw() {
     strokeWeight(3);
     rect(180, 250, 55, 45, 10);
   }
-  if (goLeft == false) {
-    tTx = tTx + 3;
+  if (goLeft == false)
+    {
+  tTx=tTx+3;
   }
-  if (goLeft == true) {
-    tTx = tTx - 3;
+  if (goLeft == true)
+    {
+  tTx=tTx-3;
   }
-  if (tTx >= 399) {
-    goLeft = true;
+  if (tTx>=399)
+    {
+  goLeft= true;
   }
-  if (tTx <= 0) {
-    goLeft = false;
+  if (tTx<=0)
+    {
+  goLeft= false;
   }
-  if (goUp == false) {
-    tTy1 = tTy1 + 3;
+    if (goUp == false)
+    {
+  tTy1=tTy1+3;
   }
-  if (goUp == true) {
-    tTy1 = tTy1 - 3;
+  if (goUp == true)
+    {
+  tTy1=tTy1-3;
   }
-  if (tTy1 >= 399) {
-    goUp = true;
+  if (tTy1>=399)
+    {
+  goUp= true;
   }
-  if (tTy1 <= 0) {
-    goUp = false;
+  if (tTy1<=0)
+    {
+  goUp= false;
   }
   hotdogMovement();
 }
