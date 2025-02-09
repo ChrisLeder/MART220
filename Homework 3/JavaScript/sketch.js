@@ -18,35 +18,49 @@ var hDy41 = 96;
 var hDy51 = 102;
 
 //Tater Tot variables
-var tTx=180;
-var tTy=200;
-var tTx1=80;
-var tTy1=180;
-//Tater Tot movement variables
-var goLeft=false;
-var goUp=false;
+var tTx = 180;
+var tTy = 200;
+var tTx1 = 80;
+var tTy1 = 180;
+
+
+var speed = 1;
+
 //image 
-var img;
-function preload(){
-img = loadImage ("images/bulldog.jpg");
+var bulldog;
+//Font
+let myFont;
+let myFont1;
+
+function preload() {
+  bulldog = loadImage("images/bulldog.jpg");
+  myFont = loadFont("Libs/Fonts/Rye-Regular.ttf");
+  myFont1 = loadFont("Libs/Fonts/Satine.ttf");
 
 }
 
 
 function setup() {
   createCanvas(400, 400);
-  
+
+
+
 }
 
 function draw() {
   background(115, 60, 11);
 
-  Image(img,0,0);
+  image(bulldog, 0, 0);
+  //Text
+  fill(0);
+  textFont(myFont);
+  textSize(48);
+  text('Hot Diggity', 20, 50);
+  fill(0);
+  textFont(myFont1);
+  textSize(36);
+  text('Chris Leder', 225, 375);
 
-  fill(0);  
-  textSize(32);
-  text ('Hot Diggity',20,50);
-  text('Chris Leder',225, 375);
   //plate
   {
     stroke(29, 86, 167);
@@ -78,6 +92,7 @@ function draw() {
     line(hDx5, hDy5, hDx51, hDy51);
   }
   //tatertots
+
   {
     fill(167, 118, 13);
     stroke(149, 102, 12);
@@ -110,38 +125,18 @@ function draw() {
     strokeWeight(3);
     rect(180, 250, 55, 45, 10);
   }
-  if (goLeft == false)
-    {
-  tTx=tTx+3;
+
+  //tater tot movement
+  tTx += tTx + speed;
+  tTy += tTy + speed;
+  //stay in bounds
+  if (tTx <= 0 || tTx >= width - 50) {
+    speed *= -1;
   }
-  if (goLeft == true)
-    {
-  tTx=tTx-3;
+  if (tTy <= 0 || tTy >= height - 40) {
+    speed *= -1;
   }
-  if (tTx>=399)
-    {
-  goLeft= true;
-  }
-  if (tTx<=0)
-    {
-  goLeft= false;
-  }
-    if (goUp == false)
-    {
-  tTy1=tTy1+3;
-  }
-  if (goUp == true)
-    {
-  tTy1=tTy1-3;
-  }
-  if (tTy1>=399)
-    {
-  goUp= true;
-  }
-  if (tTy1<=0)
-    {
-  goUp= false;
-  }
+
   hotdogMovement();
 }
 function hotdogMovement() {
