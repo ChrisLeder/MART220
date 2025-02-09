@@ -47,7 +47,7 @@ function setup() {
 function draw() {
   background(115, 60, 11);
 
-  image(bulldog, 0, 0);
+  image(bulldog, 310, 10, 50, 50);
   //Text
   fill(0);
   textFont(myFont);
@@ -55,7 +55,7 @@ function draw() {
   text('Hot Diggity', 20, 50);
   fill(0);
   textFont(myFont1);
-  textSize(36);
+  textSize(16);
   text('Chris Leder', 225, 375);
 
   //plate
