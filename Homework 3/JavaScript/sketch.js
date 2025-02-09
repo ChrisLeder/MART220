@@ -124,8 +124,8 @@ function draw() {
   }
 
   //tater tot movement
-  tTx += tTx + speed;
-  tTy += tTy + speed;
+  tTx += speed;
+  tTy += speed;
   //stay in bounds
   if (tTx <= 0 || tTx >= width - 50) {
     speed *= -1;
