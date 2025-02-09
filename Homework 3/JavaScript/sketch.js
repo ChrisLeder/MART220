@@ -26,14 +26,21 @@ var tTy1 = 180;
 
 var speed = 1;
 
-//image 
+//images   
 var bulldog;
+var squirrel;
+var acorn;
+
 //Font
 let myFont;
 let myFont1;
 
-function preload() {
+function preload() 
+{
   bulldog = loadImage("images/bulldog.jpg");
+  squirrel = loadImage("images/squirrel.png");
+  acorn = loadImage("images/acorn.jpg");
+
   myFont = loadFont("Libs/Fonts/Rye-Regular.ttf");
   myFont1 = loadFont("Libs/Fonts/Satine.ttf");
 
@@ -46,8 +53,11 @@ function setup() {
 
 function draw() {
   background(115, 60, 11);
-
+  //images
   image(bulldog, 310, 10, 50, 50);
+  image(squirrel, 210, 10, 100, 50);
+  image(bulldog, 210, 10, 150, 50);
+
   //Text
   fill(0);
   textFont(myFont);
