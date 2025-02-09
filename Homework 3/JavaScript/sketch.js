@@ -35,11 +35,10 @@ var acorn;
 let myFont;
 let myFont1;
 
-function preload() 
-{
+function preload() {
   bulldog = loadImage("images/bulldog.jpg");
   squirrel = loadImage("images/squirrel.png");
-  acorn = loadImage("images/acorn.jpg");
+  acorn = loadImage("images/Acorn.jpg");
 
   myFont = loadFont("Libs/Fonts/Rye-Regular.ttf");
   myFont1 = loadFont("Libs/Fonts/Satine.ttf");
@@ -55,8 +54,8 @@ function draw() {
   background(115, 60, 11);
   //images
   image(bulldog, 310, 10, 50, 50);
-  image(squirrel, 210, 10, 100, 50);
-  image(bulldog, 210, 10, 150, 50);
+  image(squirrel, 160, 350, 50, 50);
+  image(acorn, 350, 350, 50, 50);
 
   //Text
   fill(0);
@@ -66,7 +65,7 @@ function draw() {
   fill(0);
   textFont(myFont1);
   textSize(16);
-  text('Chris Leder', 225, 375);
+  text('Chris Leder', 220, 375);
 
   //plate
   {
@@ -136,12 +135,25 @@ function draw() {
   //tater tot movement
   tTx += speed;
   tTy += speed;
+  tTx1 += speed;
+  tTy1 += speed;
+  
   //stay in bounds
   if (tTx <= 0 || tTx >= width - 50) {
     speed *= -1;
   }
   if (tTy <= 0 || tTy >= height - 40) {
     speed *= -1;
+  }
+  {
+    if (tTx1 <= 0 || tTx1 >= width - 30) {
+      speed *= -1;
+      
+    }
+    if (tTy1 <= 0 || tTy1 >= height - 50) {
+      speed *= -1;
+      
+    }
   }
 
   hotdogMovement();
