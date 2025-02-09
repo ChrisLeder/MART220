@@ -1,4 +1,5 @@
-/*this is my CC2 HW3 assignment
+/*this is my CC2 HW3 assignment.
+I was able to figure out the movement variable with the help of M. Cassens, Youtube, and Chat GPT
 */
 //Hot Dog variables
 var hDx1 = 100;
@@ -31,6 +32,12 @@ var bulldog;
 var squirrel;
 var acorn;
 
+//image movement variables
+let bdx = 310, bdy = 10;  // Start position
+let bdspeed = 3;
+//let direction = 'right';  // Initial direction
+let dir = 0;//0=right, 1= down, 2= left, 3 = up
+
 //Font
 let myFont;
 let myFont1;
@@ -48,12 +55,27 @@ function preload() {
 function setup() {
   createCanvas(400, 400);
 
+  setInterval(() => {
+    // Move based on dir index
+    if (dir === 0) bdx += bdspeed; // Move right
+    if (dir === 1) bdy += bdspeed; // Move down
+    if (dir === 2) bdx -= bdspeed; // Move left
+    if (dir === 3) bdy -= bdspeed; // Move up
+
+    // Change direction at boundaries
+    if (bdx >= width - 50 && dir === 0) dir = 1;  // Switch to down
+    if (bdy >= height - 50 && dir === 1) dir = 2; // Switch to left
+    if (bdx <= 0 && dir === 2) dir = 3;  // Switch to up
+    if (bdy <= 0 && dir === 3) dir = 0;  // Switch to right
+  }, 50);
 }
+
+
 
 function draw() {
   background(115, 60, 11);
   //images
-  image(bulldog, 310, 10, 50, 50);
+  image(bulldog, bdx, bdy, 50, 50);
   image(squirrel, 160, 350, 50, 50);
   image(acorn, 350, 350, 50, 50);
 
@@ -147,7 +169,7 @@ function draw() {
   }
   {
     if (tTx1 <= 0 || tTx1 >= width - 30) {
-      speed *= 1;
+      speed *= -1;
       
     }
     if (tTy1 <= 0 || tTy1 >= height - 50) {
