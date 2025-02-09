@@ -147,7 +147,7 @@ function draw() {
   }
   {
     if (tTx1 <= 0 || tTx1 >= width - 30) {
-      speed *= -1;
+      speed *= 1;
       
     }
     if (tTy1 <= 0 || tTy1 >= height - 50) {
