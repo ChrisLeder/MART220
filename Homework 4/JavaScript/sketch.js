@@ -11,6 +11,7 @@ function preload() {
         // concatenation - adding strings together
         myNinjagirl = new Ninjagirl(100, 100, "../images/NinjaGirl/png/Idle__00" + i + ".png");
         animation.push(myNinjagirl);
+       // console.log(animation.length);
     }
 
 }
