@@ -7,26 +7,26 @@ let myNinjagirl;
 let i = 0;
 
 function preload() {
-    for (let i = 0; i < 10; i++)
-
+    for (let i = 0; i < 10; i++) {
         // concatenation - adding strings together
-        myNinjagirl = new ninjagirl("../images/NinjaGirl/png/Idle__00" + i + ".png");
-    animation.push(myNinjagirl);
-
-
-    function setup() {
-        createCanvas(800, 800);
-
-        myNinjagirl = new ninjagirl(400, 200);
-        setInterval(updateIndex, 50);
+        myNinjagirl = new Ninjagirl(100, 100, "../images/NinjaGirl/png/Idle__00" + i + ".png");
+        animation.push(myNinjagirl);
     }
 
-    function draw() {
-
-        background(120);
-        image(animation[i], 100, 100);
-        animation[i].draw();
-        myNinjagirl.draw();
-    }
+}
+function setup() {
+    createCanvas(800, 800);
+    setInterval(updateIndex, 50);
 }
 
+function draw() {
+
+    background(120);
+    animation[i].draw();
+}
+function updateIndex() {
+    i++;
+    if (i > 9) {
+        i = 0;
+    }
+}
