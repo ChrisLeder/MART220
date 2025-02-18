@@ -5,13 +5,14 @@ This is my Creative Coding II HW 4 project
 let animation = [];
 let myNinjagirl;
 let i = 0;
-
+let x = 100;
+let y = 100;
 function preload() {
     for (let i = 0; i < 10; i++) {
         // concatenation - adding strings together
-        myNinjagirl = new Ninjagirl(100, 100, "../images/NinjaGirl/png/Idle__00" + i + ".png");
+        myNinjagirl = new Ninjagirl(x, y, "images/NinjaGirl/png/Idle__00" + i + ".png");
         animation.push(myNinjagirl);
-       // console.log(animation.length);
+        console.log(animation.length);
     }
 
 }

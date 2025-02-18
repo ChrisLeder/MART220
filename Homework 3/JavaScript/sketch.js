@@ -159,7 +159,7 @@ function draw() {
   tTy += speed;
   tTx1 += speed;
   tTy1 += speed;
-  
+
   //stay in bounds
   if (tTx <= 0 || tTx >= width - 50) {
     speed *= -1;
@@ -170,11 +170,11 @@ function draw() {
   {
     if (tTx1 <= 0 || tTx1 >= width - 30) {
       speed *= -1;
-      
+
     }
     if (tTy1 <= 0 || tTy1 >= height - 50) {
       speed *= -1;
-      
+
     }
   }
 
