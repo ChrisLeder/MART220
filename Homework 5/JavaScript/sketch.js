@@ -12,10 +12,10 @@ var foodFound = false;
 
 function preload()
 {
-    for (var i = 0; i < 10, i++;)
+    for (var i = 0; i < 10; i++)
     {
         //concatenation- adding strings together           
-        myNinjagirl = new Ninjagirl("../images/Ninjagirl/Run_00" + i + ".png", x, y);
+        myNinjagirl = new Ninjagirl("images/Ninjagirl/Run_00" + i + ".png", x, y);
         animation.push(myNinjagirl);
     }
 

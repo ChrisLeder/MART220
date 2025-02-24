@@ -14,7 +14,7 @@ constructor(path,x,y)
 
 draw()
 {
- image(this.myImage,this.x, this.y, 75, 100);   
+ image(this.img,this.x, this.y, 75, 100);   
 }
 hasCollided(x2,y2,w2,h2){
     return(
