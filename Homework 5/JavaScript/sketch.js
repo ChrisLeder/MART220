@@ -15,7 +15,7 @@ function preload()
     for (var i = 0; i < 10; i++)
     {
         //concatenation- adding strings together           
-        myNinjagirl = new Ninjagirl("images/Ninjagirl/Run_00" + i + ".png", x, y);
+        myNinjagirl = new Ninjagirl("images/Ninjagirl/Run__00" + i + ".png", x, y);
         animation.push(myNinjagirl);
     }
 
@@ -42,20 +42,20 @@ function draw()
         if (keyIsPressed)
         {
             if (key == "a"){
-                x--;
+               x= x-5;
             }
             if (key == "d"){
-                x++;
+               x= x+5;
             }
             if (key == "w"){
-                y--;
+               y= y-5;
             }
             if (key == "s"){
-                y++;
+               y= y+5;
             }
             for (let i = 0; i < 10; i++){
-                animation[i].x = 150;
-                animation[i].y = 200;
+                animation[i].x = x;
+                animation[i].y = y;
             }
             
 
