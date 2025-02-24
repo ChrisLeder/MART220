@@ -13,7 +13,7 @@ function preload()
     for (var i = 0; i < 10; i++) 
         //concatenation-adding strings together
         {   
-        myCharacter = new character("images/character/Run_00" + i + ".png", x, y);
+        myCharacter = new character("../images/character/Run_00" + i + ".png", x, y);
         animation.push(myCharacter);
         }
 

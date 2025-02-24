@@ -1,4 +1,5 @@
 //this is my food class
+
 class food
 {
     constructor(x, y)

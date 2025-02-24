@@ -2,16 +2,16 @@
 class character {
     constructor(path, x, y) 
     {
-        this.path = path;              
+        this.path = path;
+        this.myImage = loadImage(this.path);              
         this.x = x;
-        this.y = y;  
-        this.myImage = loadImage(this.path);     
+        this.y = y;               
         this.imageWidth = 75;
         this.imageHeight = 100;
         
     }
     draw() {
-        this.imageHeight(this.myImage, this.x, this.y, 150, 200);
+       image(this.myImage, this.x, this.y, 150, 200);
     }
     hasCollided(x2, y2, w2, h2) {
         return(
