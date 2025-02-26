@@ -1,4 +1,4 @@
-//This is my CC II HW 6
+//This is my CC II HW 5
 
 var  animation = [];
 var runAnimation = [];
@@ -9,7 +9,6 @@ var x = 100;
 var y = 100;
 var foodArray = [];
 var foodFound = false;
-
 
 function preload()
 {

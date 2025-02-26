@@ -1,4 +1,4 @@
-// This is my Character
+
 class Ninjagirl
 {
 //constructor

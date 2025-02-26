@@ -1,8 +1,8 @@
-
-images/Ninjagirl/Idle__001.png
+images/Ninjagirl/Idle__000.png
+images/Ninjagirl/Idle__002.png
 images/Ninjagirl/Idle__003.png
 images/Ninjagirl/Idle__004.png
-images/Ninjagirl/Idle__006.png
+images/Ninjagirl/Idle__005.png
 images/Ninjagirl/Idle__007.png
 images/Ninjagirl/Idle__008.png
 images/Ninjagirl/Idle__009.png
