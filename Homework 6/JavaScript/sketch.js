@@ -23,12 +23,13 @@ runresult = loadStrings('Data/run.txt');
 function setup()
 {
     createCanvas(800,800);
-    setInterval(updateIndex, 30);
+
+    setInterval(updateIndex, 50);
     for (let i = 0; i < result.length; i++){
         myFood = new food(random(100, 600), random(100, 600), 50);
         foodArray.push(myFood);
     }
-console.log (result.length)
+
     for (let i = 0; i < result.length; i++)
         {
             //concatenation- adding strings together 
@@ -47,7 +48,7 @@ function draw()
         background (236, 232, 25);
         
        
-        console.log (foodArray.length)
+        
         for (let i = 0; i < foodArray.length; i++)
         {
             foodArray[i].draw();
@@ -60,6 +61,9 @@ function draw()
             runAnimation[i].draw();
             if (key == "a"){
                 x--;
+               /* translate(0, 0);
+                scale(-1.0, 1.0);
+                image( x, y);*/
             }
             if (key == "d"){
                 x++;
@@ -75,9 +79,9 @@ function draw()
                 animation[i].y = y;
             }
 
-            for (let i = 0; i < runanimation.length; i++){
-                runanimation[i].x = x;
-                runanimation[i].y = y;
+            for (let i = 0; i < runAnimation.length; i++){
+                runAnimation[i].x = x;
+                runAnimation[i].y = y;
             }
             
 
@@ -92,7 +96,7 @@ function draw()
     }
     }
     function updateIndex(){
-        i++;
+        i += 1;
         if (i > result.length - 1
         )
         {i = 0;}
