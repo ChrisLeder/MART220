@@ -1,0 +1,1 @@
+This is my Creative Coding II, Week 7, Homework 6 assignment

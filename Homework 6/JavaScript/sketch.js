@@ -11,18 +11,17 @@ var foodArray = [];
 var foodFound = false;
 var result = [];
 var runresult = [];
+
 function preload()
 {
 result = loadStrings('Data/idle.txt');
-runresult = loadStrings('Data/run.txt');
-
-
-    
+runresult = loadStrings('Data/run.txt');    
 
 }
+
 function setup()
 {
-    createCanvas(800,800);
+    createCanvas(800,700);
 
     setInterval(updateIndex, 50);
     for (let i = 0; i < result.length; i++){
@@ -54,25 +53,22 @@ function draw()
             foodArray[i].draw();
         }
 
-        if (keyIsPressed)
-
-        {
+        if (keyIsPressed)        {
 
             runAnimation[i].draw();
+
             if (key == "a"){
-                x--;
-               /* translate(0, 0);
-                scale(-1.0, 1.0);
-                image( x, y);*/
+                x= x-3;
+               
             }
             if (key == "d"){
-                x++;
+                x=x+3;
             }
             if (key == "w"){
-                y--;
+                y=y-3;
             }
             if (key == "s"){
-                y++;
+                y=y+3;
             }
             for (let i = 0; i < animation.length; i++){
                 animation[i].x = x;
@@ -89,12 +85,13 @@ function draw()
                 if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 25, 25)) {
                     foodArray.splice(k, 1); 
             }
-        }
-    }
+        }}
+    
     else{
         animation[i].draw();
     }
-    }
+}
+
     function updateIndex(){
         i += 1;
         if (i > result.length - 1
