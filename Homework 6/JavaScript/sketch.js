@@ -11,6 +11,9 @@ var foodArray = [];
 var foodFound = false;
 var result = [];
 var runresult = [];
+var score = 0;
+var timeRemaining = 0;
+
 
 function preload()
 {
@@ -45,8 +48,27 @@ function setup()
 function draw()
     {
         background (236, 232, 25);
-        
-       
+        //counters
+        //Score
+        fill( 214, 35, 20 );
+        stroke(3);
+        rect(35,30,50, 30);
+        fill(0214, 35, 20);
+        stroke(3);
+        textSize(24);
+        text('Score', 25, 25);
+        fill(0);
+        text(score, 48, 55);
+
+        fill( 214, 35, 20 );
+        stroke(3);
+        rect(680,30,70, 30);
+        fill(214, 35, 20);
+        stroke(3);
+        textSize(24);
+        text('Time Remaining', 610,25);
+        fill(0);
+        text(timeRemaining, 705, 55);
         
         for (let i = 0; i < foodArray.length; i++)
         {
@@ -91,7 +113,7 @@ function draw()
             for (let k=0; k < foodArray.length; k++){
                 if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 25, 25)) {
                     foodArray.splice(k, 1); 
-            }
+            }       
         }}
     
     else{
