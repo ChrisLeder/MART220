@@ -13,6 +13,15 @@ var result = [];
 var runresult = [];
 var score = 0;
 var timeRemaining = 0;
+var counter = 0;
+var timeLeft = 10;
+
+function convertSeconds(s){
+    var min = floor(s/60);
+    var sec = s % 60;
+    return nf(min,2) + ":" + nf(sec,2);
+
+}
 
 
 function preload()
@@ -26,8 +35,24 @@ function setup()
 {
     createCanvas(800,700);
 
+
+    var timeRemaining = select('#timeremaining');
+    timeRemaining.html(convertSeconds(timeLeft -counter));
+
+    var interval = setInterval(countDown, 1000);
+
+    function countDown(){
+        counter++;
+        timeRemaining.html(convertSeconds(timeLeft -counter));
+        if (counter==timeLeft){
+            clearInterval(interval);
+        }
+    }
+
+    
+
     setInterval(updateIndex, 50);
-    for (let i = 0; i < result.length; i++){
+    for (let i = 0; i < 10; i++){
         myFood = new food(random(100, 600), random(100, 600), 50);
         foodArray.push(myFood);
     }
@@ -111,14 +136,18 @@ function draw()
             
 
             for (let k=0; k < foodArray.length; k++){
-                if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 25, 25)) {
+                if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) {
                     foodArray.splice(k, 1); 
+                    if (foodArray.splice(k, 1)){
+                        score = score + 1;
+                    }
             }       
         }}
     
     else{
         animation[i].draw();
     }
+    
 }
 
     function updateIndex(){
