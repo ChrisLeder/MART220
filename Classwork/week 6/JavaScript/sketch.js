@@ -15,24 +15,23 @@ var score = 0;
 var timeRemaining = (timeLeft - counter);
 var counter = 0;
 var timeLeft = 10;
-var timeremaining;
+var timeremaining = 0;
 
-function convertSeconds(s) {
+function convertSeconds(s) 
+{
     var min = floor(s / 60);
     var sec = s % 60;
     return nf(min, 2) + ":" + nf(sec, 2);
-
 }
 
-
-function preload() {
+function preload() 
+{
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
-
 }
 
-function setup() {
-
+function setup() 
+{
 
     createCanvas(800, 650);
 
@@ -63,11 +62,11 @@ function setup() {
         //Run animation
         myNinjagirl = new Ninjagirl(runresult[i], x, y);
         runAnimation.push(myNinjagirl);
-
-
     }
 }
-function draw() {
+
+function draw() 
+{
     background(236, 232, 25);    
 
     //Score
@@ -92,20 +91,25 @@ function draw() {
     fill(0);
     text(timeRemaining, 705, 55);
 
-
-
-    for (let i = 0; i < foodArray.length; i++) {
-        foodArray[i].draw();
+    if (counter == timeLeft) {
+        stroke(15);
+        fill(214, 35, 20);        
+        textSize(60);
+        text('Game Over', 225, 60);
     }
 
-    if (keyIsPressed) {
+    for (let i = 0; i < foodArray.length; i++) 
+        {
+        foodArray[i].draw();
+        }
 
+    if (keyIsPressed) 
+        {
         runAnimation[i].draw();
 
         if (key == "a") {
             x = x - 3;
             flipX = true;
-
         }
         if (key == "d") {
             x = x + 3;
@@ -118,34 +122,40 @@ function draw() {
             y = y + 3;
         }
 
-        for (let i = 0; i < animation.length; i++) {
+        for (let i = 0; i < animation.length; i++) 
+            {
             animation[i].flipX = flipX;
             animation[i].x = x;
             animation[i].y = y;
-        }
+            }
 
-        for (let i = 0; i < runAnimation.length; i++) {
+        for (let i = 0; i < runAnimation.length; i++) 
+            {
             runAnimation[i].flipX = flipX;
             runAnimation[i].x = x;
             runAnimation[i].y = y;
-        }
+            }
 
 
-        for (let k = 0; k < foodArray.length; k++) {
-            if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) {
+        for (let k = 0; k < foodArray.length; k++) 
+            {
+            if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
+                {
                 foodArray.splice(k, 1);               
                 score = score + 1;
+                }
             }
-        }
     }
 
-    else {
+    else 
+    {
         animation[i].draw();
-    }
+    }    
 
 }
 
-function updateIndex() {
+function updateIndex() 
+{
     i += 1;
     if (i > result.length - 1
     ) { i = 0; }
