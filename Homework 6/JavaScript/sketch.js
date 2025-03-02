@@ -57,12 +57,16 @@ function draw()
 
             runAnimation[i].draw();
 
+            
+
             if (key == "a"){
                 x= x-3;
+                flipX = true;
                
             }
             if (key == "d"){
                 x=x+3;
+                flipX = false;
             }
             if (key == "w"){
                 y=y-3;
@@ -70,12 +74,15 @@ function draw()
             if (key == "s"){
                 y=y+3;
             }
+            
             for (let i = 0; i < animation.length; i++){
+                animation[i].flipX = flipX;
                 animation[i].x = x;
                 animation[i].y = y;
             }
 
             for (let i = 0; i < runAnimation.length; i++){
+                runAnimation[i].flipX = flipX;
                 runAnimation[i].x = x;
                 runAnimation[i].y = y;
             }

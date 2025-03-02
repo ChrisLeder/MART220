@@ -9,13 +9,24 @@ constructor(path,x,y)
     this.x = x;
     this.y = y;
     this.imageWidth =100;
-    this.imageHeight = 150;    
+    this.imageHeight = 150; 
+    this.flipX = false;   
 }
 
 draw()
 {
+    push();
+    if (this.flipX){
+        translate(this.imageWidth, 0);
+        scale(-1.0, 1.0);
+        image(this.img, -this.x, this.y, 100, 150);
+    }
+    else{
  image(this.img, this.x, this.y, 100, 150);   
 }
+    pop();
+}
+
 hasCollided(x2,y2,w2,h2){
     return(
         this.x < x2 + w2 &&
