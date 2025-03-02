@@ -15,7 +15,8 @@ var score = 0;
 var timeRemaining = 0;
 var counter = 0;
 var timeLeft = 10;
-
+var xPos = 705;
+var yPos = 55;
 function convertSeconds(s){
     var min = floor(s/60);
     var sec = s % 60;
@@ -43,16 +44,18 @@ function setup()
 
     function countDown(){
         counter++;
-        timeRemaining.html(convertSeconds(timeLeft -counter));
+        timeRemaining.html(convertSeconds(timeLeft -counter));             
+
         if (counter==timeLeft){
             clearInterval(interval);
         }
+        
     }
 
     
 
     setInterval(updateIndex, 50);
-    for (let i = 0; i < 10; i++){
+    for (let i = 0; i < 20; i++){
         myFood = new food(random(100, 600), random(100, 600), 50);
         foodArray.push(myFood);
     }
@@ -85,15 +88,18 @@ function draw()
         fill(0);
         text(score, 48, 55);
 
-        fill( 214, 35, 20 );
-        stroke(3);
-        rect(680,30,70, 30);
+        
         fill(214, 35, 20);
         stroke(3);
         textSize(24);
         text('Time Remaining', 610,25);
+        timeremaining = timeRemaining.html;
         fill(0);
-        text(timeRemaining, 705, 55);
+        text(timeremaining, xPos, yPos);
+        fill( 214, 35, 20 );
+        stroke(3);
+        rect(680,30,70, 30);
+        
         
         for (let i = 0; i < foodArray.length; i++)
         {
