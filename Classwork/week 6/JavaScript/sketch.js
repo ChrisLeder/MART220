@@ -12,11 +12,12 @@ var foodFound = false;
 var result = [];
 var runresult = [];
 var score = 0;
-var timeRemaining = (timeLeft - counter);
+var timeRemaining = 0;
 var counter = 0;
-var timeLeft = 10;
+var timeLeft = 90;
 var timeremaining = 0;
 var keyIsPressed = true;
+var flipX= false;
 
 
 
@@ -38,18 +39,20 @@ function setup()
 
     createCanvas(800, 650);
 
-    var timeRemaining = select('#timeremaining');
-    timeRemaining.html(convertSeconds(timeLeft - counter));
+    setInterval(foodFight, 5000);
+    
     var interval = setInterval(countDown, 1000);
 
     function countDown() {
         counter++;
-        timeRemaining.html(convertSeconds(timeLeft - counter));
-        if (counter == timeLeft) {
+        timeLeft--;
+        if  (timeLeft== 0) {
             clearInterval(interval);
         }
 
     }
+
+    
 
     setInterval(updateIndex, 50);
     for (let i = 0; i < 10; i++) {
@@ -68,9 +71,31 @@ function setup()
     }
 }
 
+function loadFood()
+    {
+for (let i = 0; i < foodArray.length; i++) 
+        {
+        foodArray[i].draw();
+        }
+    }
+    function foodFight(){
+        for (let i = 0; i < foodArray.length; i++) 
+            {
+            foodArray[i].x = random(100, 600);
+            foodArray[i].y= random(100, 600);
+            }
+            loadFood();
+    }
+
 function draw() 
 {
     background(236, 232, 25);    
+    loadFood();
+    
+    /*for (let i = 0; i < foodArray.length; i++) 
+        {
+        foodArray[i].draw();
+        }*/
 
     //Score
     fill(214, 35, 20);
@@ -86,25 +111,21 @@ function draw()
     //timer
     fill(214, 35, 20);
     stroke(3);
-    textSize(24);
+    textSize(24);22222
     text('Time Remaining', 610, 25);
     fill(214, 35, 20);
     stroke(3);
     rect(680, 30, 70, 30);
     fill(0);
-    text(timeRemaining, 705, 55);
+    text(timeLeft, 705, 55);
 
-    if (counter == timeLeft) {
+    if (timeLeft== 0) {
         stroke(15);
         fill(214, 35, 20);        
         textSize(60);
         text('Game Over', 225, 60);
     }
-
-    for (let i = 0; i < foodArray.length; i++) 
-        {
-        foodArray[i].draw();
-        }
+    
 
     if (keyIsPressed)
         {
@@ -154,11 +175,12 @@ function draw()
     {
         animation[i].draw();
     } 
-    if (counter == timeLeft){
+    if ( timeLeft== 0){
         keyIsPressed = false;
     }
     
 }
+
 
 function updateIndex() 
 {
