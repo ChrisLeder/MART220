@@ -16,6 +16,9 @@ var timeRemaining = (timeLeft - counter);
 var counter = 0;
 var timeLeft = 10;
 var timeremaining = 0;
+var keyIsPressed = true;
+
+
 
 function convertSeconds(s) 
 {
@@ -49,7 +52,7 @@ function setup()
     }
 
     setInterval(updateIndex, 50);
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
         myFood = new food(random(100, 600), random(100, 600), 50);
         foodArray.push(myFood);
     }
@@ -103,7 +106,7 @@ function draw()
         foodArray[i].draw();
         }
 
-    if (keyIsPressed) 
+    if (keyIsPressed)
         {
         runAnimation[i].draw();
 
@@ -121,7 +124,7 @@ function draw()
         if (key == "s") {
             y = y + 3;
         }
-
+        
         for (let i = 0; i < animation.length; i++) 
             {
             animation[i].flipX = flipX;
@@ -150,8 +153,11 @@ function draw()
     else 
     {
         animation[i].draw();
-    }    
-
+    } 
+    if (counter == timeLeft){
+        keyIsPressed = false;
+    }
+    
 }
 
 function updateIndex() 
