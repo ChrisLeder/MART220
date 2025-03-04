@@ -19,15 +19,6 @@ var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
 
-
-
-function convertSeconds(s) 
-{
-    var min = floor(s / 60);
-    var sec = s % 60;
-    return nf(min, 2) + ":" + nf(sec, 2);
-}
-
 function preload() 
 {
     result = loadStrings('Data/idle.txt');
@@ -50,9 +41,7 @@ function setup()
             clearInterval(interval);
         }
 
-    }
-
-    
+    }    
 
     setInterval(updateIndex, 50);
     for (let i = 0; i < 10; i++) {
@@ -71,9 +60,9 @@ function setup()
     }
 }
 
-function loadFood()
+    function loadFood()
     {
-for (let i = 0; i < foodArray.length; i++) 
+    for (let i = 0; i < foodArray.length; i++) 
         {
         foodArray[i].draw();
         }
@@ -89,14 +78,10 @@ for (let i = 0; i < foodArray.length; i++)
 
 function draw() 
 {
-    background(236, 232, 25);    
-    loadFood();
-    
-    /*for (let i = 0; i < foodArray.length; i++) 
-        {
-        foodArray[i].draw();
-        }*/
+    background(236, 232, 25); 
 
+    loadFood();
+        
     //Score
     fill(214, 35, 20);
     stroke(3);
@@ -126,7 +111,7 @@ function draw()
         text('Game Over', 225, 60);
     }
     
-
+    //animations
     if (keyIsPressed)
         {
         runAnimation[i].draw();

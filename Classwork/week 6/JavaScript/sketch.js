@@ -14,19 +14,25 @@ var runresult = [];
 var score = 0;
 var timeRemaining = 0;
 var counter = 0;
-var timeLeft = 90;
+var timeLeft = 30;
 var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
 
 
 
-function convertSeconds(s) 
+/*function convertSeconds(s) 
 {
     var min = floor(s / 60);
     var sec = s % 60;
     return nf(min, 2) + ":" + nf(sec, 2);
-}
+}*/
+/*function convertSeconds(s) 
+{
+    var min = floor(s / 60);
+    var sec = s % 60;
+    return nf(min, 2) + ":" + nf(sec, 2);
+}*/
 
 function preload() 
 {
@@ -91,11 +97,6 @@ function draw()
 {
     background(236, 232, 25);    
     loadFood();
-    
-    /*for (let i = 0; i < foodArray.length; i++) 
-        {
-        foodArray[i].draw();
-        }*/
 
     //Score
     fill(214, 35, 20);
@@ -124,9 +125,8 @@ function draw()
         fill(214, 35, 20);        
         textSize(60);
         text('Game Over', 225, 60);
-    }
-    
-
+    }    
+    //animation    
     if (keyIsPressed)
         {
         runAnimation[i].draw();
