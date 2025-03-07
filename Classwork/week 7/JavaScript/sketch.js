@@ -19,10 +19,18 @@ var timeLeft = 30;
 var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
-
+var bgMusic;
+var eatSound;
+var retchSound;
 
 function preload() 
 {
+    //background music
+    bgMusic = loadSound('Audio/bgMusic.wav');
+    //eat food sound
+    eatSound = loadSound('Audio/yum.wav');
+    //eat bad food sound
+    retchSound = loadSound('Audio/reetching.wav');
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
 }
@@ -67,6 +75,15 @@ function setup()
         runAnimation.push(myNinjagirl);
     }
 }
+function mousePressed() {
+    // playing a sound file on a user gesture
+   if(bgMusic.isPlaying())
+  {
+    bgMusic.stop();
+  }
+  else
+    bgmusic.loop();
+  }
 
 function loadFood()
     {
