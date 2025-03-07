@@ -2,14 +2,17 @@
 
 class food
 {
-    constructor(x, y)
+    constructor(x, y, r,g,b)
     {
         this.x = x;
         this.y = y;
+        this.r =r;
+        this.g =g;
+        this.b =b;
     }
     draw()
     {
-        fill(34, 86, 214);
+        fill(this.r, this.b, this.b);
         circle(this.x, this.y, 25);
     }
 }

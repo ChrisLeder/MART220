@@ -5,7 +5,7 @@ var runAnimation = [];
 var i = 0;
 var myNinjagirl;
 var myFood;
-//var myFood1;
+var myFood1;
 var x = 100;
 var y = 100;
 var foodArray = [];
@@ -20,17 +20,17 @@ var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
 var bgMusic;
-var eatSound;
-var retchSound;
+//var eatSound;
+//var retchSound;
 
 function preload() 
 {
     //background music
     bgMusic = loadSound('Audio/bgMusic.wav');
     //eat food sound
-    eatSound = loadSound('Audio/yum.wav');
+    //eatSound = loadSound('Audio/yum.wav');
     //eat bad food sound
-    retchSound = loadSound('Audio/reetching.wav');
+    //retchSound = loadSound('Audio/retching.wav');
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
 }
@@ -57,12 +57,12 @@ function setup()
 
     setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
-        myFood = new food(random(100, 600), random(100, 600), 50);
-        foodArray.push(myFood);
+        myFood = new food(random(100, 600), random(100, 600),  34, 86, 214,50);
+        foodArray.push(myFood);}
 
-        /*for (let i = 0; i < 5; i++) {
-            myFood1 = new badfood(random(100, 600), random(100, 600), 50);
-            foodArray.push(myFood1);*/
+        for (let i = 0; i < 5; i++) {
+            myFood = new food(random(100, 600), random(100, 600), 50, 100, 140, 43);
+            foodArray.push(myFood);
     }
 
     for (let i = 0; i < result.length; i++) {
@@ -174,8 +174,20 @@ function draw()
             //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
             if(collideRectRect(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x,foodArray[k].y, 10, 10 ))
                 {
+                    if (foodArray[k].r==34){
+                        score = score + 1;
+                    }
+                    else{
+                        score= score - 1;
+
+                    }
+
+
+
+
+
                 foodArray.splice(k, 1);               
-                score = score + 1;
+                
                 }
             }
     }
