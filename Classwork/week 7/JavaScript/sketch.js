@@ -70,7 +70,7 @@ function setup()
         myNinjagirl = new Ninjagirl(runresult[i], x, y);
         runAnimation.push(myNinjagirl);
     }
-    bgSound();
+    bgSound();//this is in setup function
 }
 
 function loadFood()
@@ -214,7 +214,6 @@ function draw()
     }
     
 }
-
 
 function updateIndex() 
 {

@@ -11,25 +11,33 @@ var foodArray = [];
 var foodFound = false;
 var result = [];
 var runresult = [];
-var score = 0;
+var score = 5;
 var timeRemaining = 0;
 var counter = 0;
 var timeLeft = 30;
 var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
-
+var bgmusic;
+//var eat;
+//var retch;
 
 function preload() 
-{
+{   //SOUNDS
+    //soundFormats("wav");
+    //background music
+    bgmusic = loadSound("Audio/bgMusic.wav");
+    //eat food sound
+    eat = loadSound("Audio/yum.wav");
+    //eat bad food sound
+    retch = loadSound("Audio/retching.wav");
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
 }
 
 function setup() 
 {
-
-    createCanvas(800, 650);
+     createCanvas(800, 650);    
 
     setInterval(foodFight, 5000);
     
@@ -41,15 +49,16 @@ function setup()
         if  (timeLeft== 0) {
             clearInterval(interval);
         }
-
-    }
-
-    
+    }    
 
     setInterval(updateIndex, 50);
-    for (let i = 0; i < 10; i++) {
-        myFood = new food(random(100, 600), random(100, 600), 50);
-        foodArray.push(myFood);
+    for (let i = 0; i < 5; i++) {
+        myFood = new food(random(100, 600), random(100, 600),  34, 86, 214,50);
+        foodArray.push(myFood);}
+
+        for (let i = 0; i < 5; i++) {
+            myFood = new food(random(100, 600), random(100, 600), 50, 100, 140, 43);
+            foodArray.push(myFood);
     }
 
     for (let i = 0; i < result.length; i++) {
@@ -61,6 +70,7 @@ function setup()
         myNinjagirl = new Ninjagirl(runresult[i], x, y);
         runAnimation.push(myNinjagirl);
     }
+    bgSound();//this is in setup function
 }
 
 function loadFood()
@@ -76,7 +86,15 @@ for (let i = 0; i < foodArray.length; i++)
             foodArray[i].x = random(100, 600);
             foodArray[i].y= random(100, 600);
             }
-            loadFood();
+            
+    }
+    
+
+    function bgSound(){
+        bgmusic.play();
+        bgmusic.loop();
+        bgmusic.setVolume(0.1);
+        userStartAudio();
     }
 
 function draw() 
@@ -91,7 +109,7 @@ function draw()
     fill(214, 35, 20);
     stroke(3);
     textSize(24);
-    text('Score', 25, 25);
+    text('Health', 25, 25);
     fill(0);
     text(score, 48, 55);
 
@@ -105,13 +123,29 @@ function draw()
     rect(680, 30, 70, 30);
     fill(0);
     text(timeLeft, 705, 55);
-
+    //Game Text
     if (timeLeft== 0) {
         stroke(15);
         fill(214, 35, 20);        
         textSize(60);
         text('Game Over', 225, 60);
     }    
+    if (score == 0){
+        stroke(15);
+        fill(214, 35, 20);        
+        textSize(80);
+        text('You Died!!!', 225, 400); 
+        textSize(60);
+        text('Game Over', 225, 60);
+    }
+    if (score == 10){
+        stroke(15);
+        fill(214, 35, 20);        
+        textSize(80);
+        text('You Win!!!', 225, 400); 
+        textSize(60);
+        text('Game Over', 225, 60);}
+
     //animation    
     if (keyIsPressed)
         {
@@ -149,10 +183,21 @@ function draw()
 
         for (let k = 0; k < foodArray.length; k++) 
             {
-            if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
+            //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
+            if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x,foodArray[k].y, 10, 10 ))
                 {
+                    if (foodArray[k].r==34){
+                        eat.play();
+                        score = score + 1;
+                    }
+                    else{
+                        retch.play();
+                        score= score - 1;
+
+                    }
+
                 foodArray.splice(k, 1);               
-                score = score + 1;
+                
                 }
             }
     }
@@ -161,12 +206,14 @@ function draw()
     {
         animation[i].draw();
     } 
-    if ( timeLeft== 0){
+    if ( timeLeft== 0 || score == 0){
+        keyIsPressed = false;
+    }
+    if (score == 10){
         keyIsPressed = false;
     }
     
 }
-
 
 function updateIndex() 
 {
