@@ -93,7 +93,7 @@ for (let i = 0; i < foodArray.length; i++)
     function bgSound(){
         bgmusic.play();
         bgmusic.loop();
-        bgmusic.setVolume(1);
+        bgmusic.setVolume(0.1);
         userStartAudio();
     }
 
@@ -187,9 +187,11 @@ function draw()
             if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x,foodArray[k].y, 10, 10 ))
                 {
                     if (foodArray[k].r==34){
+                        eat.play();
                         score = score + 1;
                     }
                     else{
+                        retch.play();
                         score= score - 1;
 
                     }
