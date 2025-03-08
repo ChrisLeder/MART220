@@ -18,25 +18,26 @@ var timeLeft = 30;
 var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
-//var bgMusic;
-//var eatSound;
-//var retchSound;
+var bgmusic;
+//var eat;
+//var retch;
 
 function preload() 
-{
+{   //SOUNDS
+    //soundFormats("wav");
     //background music
-    //bgMusic = loadSound('Audio/bgMusic.wav');
+    bgmusic = loadSound("Audio/bgMusic.wav");
     //eat food sound
-    //eatSound = loadSound('Audio/yum.wav');
+    eat = loadSound("Audio/yum.wav");
     //eat bad food sound
-    //retchSound = loadSound('Audio/retching.wav');
+    retch = loadSound("Audio/retching.wav");
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
 }
 
 function setup() 
 {
-    createCanvas(800, 650);    
+     createCanvas(800, 650);    
 
     setInterval(foodFight, 5000);
     
@@ -69,18 +70,8 @@ function setup()
         myNinjagirl = new Ninjagirl(runresult[i], x, y);
         runAnimation.push(myNinjagirl);
     }
-    
+    bgSound();
 }
-
-/*function bgMusic(){
-    bgMusic.play();
-    bgMusic.loop();
-    bgMusic.setVolume(0.2);
-    userStartAudio();
-}*/
-
-
-
 
 function loadFood()
     {
@@ -96,6 +87,14 @@ for (let i = 0; i < foodArray.length; i++)
             foodArray[i].y= random(100, 600);
             }
             
+    }
+    
+
+    function bgSound(){
+        bgmusic.play();
+        bgmusic.loop();
+        bgmusic.setVolume(1);
+        userStartAudio();
     }
 
 function draw() 
@@ -194,10 +193,6 @@ function draw()
                         score= score - 1;
 
                     }
-
-
-
-
 
                 foodArray.splice(k, 1);               
                 

@@ -1,4 +1,4 @@
-//this is my badfood class
+/*this is my badfood class
 
 class badfood
 {
@@ -12,4 +12,4 @@ class badfood
         fill(100, 140, 43);
         circle(this.x, this.y, 25);
     }
-}
+}*/
