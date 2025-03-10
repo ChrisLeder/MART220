@@ -1,4 +1,4 @@
-//This is my CC II HW 6
+//This is my CC II HW 7
 
 var animation = [];
 var runAnimation = [];
@@ -184,7 +184,7 @@ function draw()
         for (let k = 0; k < foodArray.length; k++) 
             {
             //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
-            if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x,foodArray[k].y, 10, 10 ))
+            if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x, foodArray[k].y, 10, 10 ))
                 {
                     if (foodArray[k].r==34){
                         eat.play();

@@ -12,7 +12,7 @@ class food
     }
     draw()
     {
-        fill(this.r, this.b, this.b);
+        fill(this.r, this.g, this.b);
         circle(this.x, this.y, 25);
     }
 }

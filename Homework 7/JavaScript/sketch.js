@@ -1,4 +1,4 @@
-//This is my CC II HW 6
+//This is my CC II HW 7
 
 var animation = [];
 var runAnimation = [];
@@ -19,8 +19,7 @@ var timeremaining = 0;
 var keyIsPressed = true;
 var flipX= false;
 var bgmusic;
-//var eat;
-//var retch;
+
 
 function preload() 
 {   //SOUNDS
@@ -31,6 +30,7 @@ function preload()
     eat = loadSound("Audio/yum.wav");
     //eat bad food sound
     retch = loadSound("Audio/retching.wav");
+    //animation strings
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
 }
@@ -53,11 +53,11 @@ function setup()
 
     setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
-        myFood = new food(random(100, 600), random(100, 600),  34, 86, 214,50);
+        myFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
         foodArray.push(myFood);}
 
         for (let i = 0; i < 5; i++) {
-            myFood = new food(random(100, 600), random(100, 600), 50, 100, 140, 43);
+            myFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
             foodArray.push(myFood);
     }
 
@@ -184,7 +184,7 @@ function draw()
         for (let k = 0; k < foodArray.length; k++) 
             {
             //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
-            if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x,foodArray[k].y, 10, 10 ))
+            if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x, foodArray[k].y, 10, 10 ))
                 {
                     if (foodArray[k].r==34){
                         eat.play();
