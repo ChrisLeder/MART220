@@ -116,7 +116,7 @@ function draw()
     //timer
     fill(214, 35, 20);
     stroke(3);
-    textSize(24);22222
+    textSize(24);
     text('Time Remaining', 610, 25);
     fill(214, 35, 20);
     stroke(3);
