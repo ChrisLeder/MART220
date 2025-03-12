@@ -1,7 +1,7 @@
 class animationImage
 {
 
-    constructor(fileNams, x, y, w, h)
+    constructor(x, y, w, h)
     {
        //this.fileNames =this.fileNames;
         this.x = x;
@@ -10,11 +10,12 @@ class animationImage
         this.h = h;
         this.imageObjcts = [];
         //this.loadAnimation();
+        this.currentAnimation;
         this.createAnimation();
         this.i = 0; 
         this.currentFrameCount = 0;
         this.direction = "";
-        this.currentAnimation;
+        
     }
 
     getX()
@@ -34,7 +35,7 @@ class animationImage
 
     createAnimation()
     {
-        this.curreentAnimation = createSprite(300, 250);
+        this.currentAnimation = createSprite(300, 250);
     }
 
     loadAnimation(animationType, fileNames)
@@ -45,6 +46,25 @@ class animationImage
     drawAnimation(animationType)
     {
         this.currentAnimation.frameDelay = 5;
+        this.currentAnimation.scale = 5;
         this.currentAnimation.changeAnimation(animationType);
+
+        if (animationType =='run' && this.direction == 'forward')
+            {
+                this.currentAnimation.mirror.x = false;
+                this.currentAnimation.direction = 0;
+                this.currentAnimation.speed = 3;
+
+            }
+        else if (animationType == 'run'&& this.direction == 'reverse')
+            {
+                this.currentAnimation.mirror.x = true;
+                this.currentAnimation.direction = 180;
+                this.currentAnimation.speed = 3;
+            }
+        else
+        {
+            this.currentAnimation.velocity.x = 0;
+        }
     }
 }
