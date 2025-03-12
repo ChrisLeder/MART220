@@ -1,7 +1,7 @@
 class animationImage
 {
 
-    constructor(x, y, w, h)
+    constructor(fileNames, x, y, w, h)
     {
        //this.fileNames =this.fileNames;
         this.x = x;

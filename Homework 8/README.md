@@ -1,1 +1,1 @@
-This is my Creativee Coding II Homework 8 assignment on p5 Play
+This is my Creative Coding II Homework 8 assignment on p5 Play
