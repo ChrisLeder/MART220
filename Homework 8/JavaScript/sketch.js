@@ -1,9 +1,10 @@
-//This is my sktch.js pag for p5play
+//This is my sketch.js page for p5play
 
 var idlePaths = [];
 var runPaths = [];
 var myAnimation;
 var myRunAnimation;
+//var someImage;
 
 
 function preload()
@@ -18,21 +19,39 @@ function setup()
     myAnimation =new animationImage(idlePaths, 0, 0, 150, 150);
     myAnimation.loadAnimation('idle', idlePaths);
     myAnimation.loadAnimation('run', runPaths);
+
+    //compact way to add someImage
+    /*someeImage =createSprite(450, 200, 100, 100, 'static');
+    someImage.img = "./images/some.jpg";
+    someImage.scale = 0.05;
+    someImage.diameter = 150;*/
 }
 
 function draw()
 {
     background(13, 152, 34);
 
-    if(keyIsPressed)
+    if(kb.pressing('d'))
     {
         if(key == 'd')
             {
+                myAnimation.updatePosition('forward');
                 myAnimation.drawAnimation('run');
+                if(myAnimation.isColliding(someImage))
+                {
+                    myAnimation.drawAnimation('idle');
+                    myAnimation.updatePosition('idle');
+                }
             }
-        else
+        else if(kb.pressing('a'))
         {
-            myAnimation.drawAnimation('idle');
+            myAnimation.updatePosition('reverse');
+            myAnimation.drawAnimation('run');
+            if(myAnimation.isColliding(someImage))
+                {
+                    myAnimation.drawAnimation('idle');
+                    myAnimation.updatePosition('idle');
+                }
         }
     }
     else
