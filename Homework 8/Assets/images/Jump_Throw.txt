@@ -1,0 +1,10 @@
+images/Ninjagirl/Jump_Throw__000.png
+images/Ninjagirl/Jump_Throw__001.png
+images/Ninjagirl/Jump_Throw__002.png
+images/Ninjagirl/Jump_Throw__003.png
+images/Ninjagirl/Jump_Throw__004.png
+images/Ninjagirl/Jump_Throw__005.png
+images/Ninjagirl/Jump_Throw__006.png
+images/Ninjagirl/Jump_Throw__007.png
+images/Ninjagirl/Jump_Throw__008.png
+images/Ninjagirl/Jump_Throw__009.png
