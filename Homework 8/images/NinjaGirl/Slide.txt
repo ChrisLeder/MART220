@@ -1,0 +1,10 @@
+images/NinjaGirl/Slide__000.png
+images/NinjaGirl/Slide__001.png
+images/NinjaGirl/Slide__002.png
+images/NinjaGirl/Slide__003.png
+images/NinjaGirl/Slide__004.png
+images/NinjaGirl/Slide__005.png
+images/NinjaGirl/Slide__006.png
+images/NinjaGirl/Slide__007.png
+images/NinjaGirl/Slide__008.png
+images/NinjaGirl/Slide__009.png

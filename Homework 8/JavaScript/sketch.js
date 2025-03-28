@@ -4,7 +4,7 @@ var idlePaths = [];
 var runPaths = [];
 var myAnimation;
 var myRunAnimation;
-//var someImage;
+var someImage;
 var myFood;
 var x = 100;
 var y = 100;
@@ -12,8 +12,7 @@ var foodArray = [];
 var score = 5;
 var timeRemaining = 0;
 var counter = 0;
-var timeLeft = 30;
-var timeremaining = 0
+var timeLeft = 30;;
 var bgmusic;
 
 function preload()
@@ -23,27 +22,27 @@ function preload()
     eat = loadSound("Audio/yum.wav");
     retch = loadSound("Audio/retching.wav");
     //Character animation
-    idlePaths = loadStrings("../Assets/images/NinjaGirl/idle.txt");
-    runPaths = loadStrings("../Assets/images/NinjaGirl/run.txt");
+    idlePaths = loadStrings("../images/NinjaGirl/idle.txt");
+    runPaths = loadStrings("../images/NinjaGirl/run.txt");
 }
 
 function setup()
 {
     createCanvas(800, 650);
+      
 
-    setInterval(foodFight, 5000);
+    setInterval(countDown, 1000);
+        var interval = setInterval(countDown, 1000);
     
-    var interval = setInterval(countDown, 1000);
-
-    function countDown() {
-        counter++;
-        timeLeft--;
-        if  (timeLeft== 0) {
-            clearInterval(interval);
+        function countDown() {
+            counter++;
+            timeLeft--;
+            if  (timeLeft== 0) {
+                clearInterval(interval);
+            }
         }
-    }    
 
-    setInterval(updateIndex, 50);
+    /*setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
         myFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
         foodArray.push(myFood);}
@@ -51,24 +50,24 @@ function setup()
         for (let i = 0; i < 5; i++) {
             myFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
             foodArray.push(myFood);
-    }
+    }*/
 
 
 
-    myAnimation =new animationImage(idlePaths, 0, 0, 50, 75);
+    myAnimation =new animationImage(0, 0, 50, 75);
     myAnimation.loadAnimation('idle', idlePaths);
     myAnimation.loadAnimation('run', runPaths);
 
     //compact way to add someImage
-    /*someImage =createSprite(450, 200, 100, 100, 'static');
-    someImage.img = "./images/some.jpg";
-    someImage.scale = 0.05;
-    someImage.diameter = 150;*/
+    someImage =createSprite(450, 200, 50, 75, 'static');
+    someImage.img = "./images/BadNinja/Idle_000.png";
+    someImage.scale = 0.25;
+    someImage.diameter = 150;
 
-    bgSound();//this is in setup function
+    bgSound();
 }
 
-function loadFood()
+/*function loadFood()
     {
 for (let i = 0; i < foodArray.length; i++) 
         {
@@ -82,20 +81,26 @@ for (let i = 0; i < foodArray.length; i++)
             foodArray[i].y= random(100, 600);
             }
             
-    }
+    }*/
     
-
+    
     function bgSound(){
         bgmusic.play();
         bgmusic.loop();
         bgmusic.setVolume(0.1);
         userStartAudio();
+        
     }
 
 function draw()
 {
     background(13, 152, 34);
-    loadFood();
+
+    //loadFood();    
+
+        //setInterval(foodFight, 5000);
+        
+    
 
      //Score
      fill(214, 35, 20);
@@ -141,9 +146,11 @@ function draw()
          textSize(60);
          text('Game Over', 225, 60);}
 
+
+
     if(kb.pressing('d'))
     {
-        if(key == 'd')
+        if(kb.pressing('d'))
             {
                 myAnimation.updatePosition('forward');
                 myAnimation.drawAnimation('run');
@@ -153,7 +160,9 @@ function draw()
                     myAnimation.updatePosition('idle');
                 }
             }
-        else if(kb.pressing('a'))
+        
+    }
+    else if(kb.pressing('a'))
         {
             myAnimation.updatePosition('reverse');
             myAnimation.drawAnimation('run');
@@ -162,14 +171,37 @@ function draw()
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
                 }
+
+                
         }
-    }
+        else if(kb.pressing('w'))
+            {
+                myAnimation.updatePosition('up');
+                myAnimation.drawAnimation('run');
+                if(myAnimation.isColliding(someImage))
+                {
+                    myAnimation.drawAnimation('idle');
+                    myAnimation.updatePosition('idle');
+                }
+            }
+        
+    
+    else if(kb.pressing('s'))
+        {
+            myAnimation.updatePosition('down');
+            myAnimation.drawAnimation('run');
+            if(myAnimation.isColliding(someImage))
+                {
+                    myAnimation.drawAnimation('idle');
+                    myAnimation.updatePosition('idle');
+                }
+            }
     else
     {
         myAnimation.drawAnimation('idle');
     }
 
-    {
+   /* {
         for (let k = 0; k < foodArray.length; k++) 
             {
             //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
@@ -179,7 +211,7 @@ function draw()
                         eat.play();
                         score = score + 1;
                     }
-                    else{
+                    else {
                         retch.play();
                         score= score - 1;
 
@@ -188,7 +220,8 @@ function draw()
                 foodArray.splice(k, 1);               
                 
                 }
-            } else 
+            
+             else 
             {
                 animation[i].draw();
             } 
@@ -208,10 +241,5 @@ function draw()
             ) { i = 0; }
         }
         
-    /*myAnimation.updatePosition('idle');
-    myAnimation.stCurrentFramCount(frameCount);
-    myAnimation.drawAnimation();*/
-
-
-    //animation(sprite, 400, 325);
+    */
 }

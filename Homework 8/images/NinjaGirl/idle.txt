@@ -1,0 +1,10 @@
+images/NinjaGirl/Idle__000.png
+images/NinjaGirl/Idle__001.png
+images/NinjaGirl/Idle__002.png
+images/NinjaGirl/Idle__003.png
+images/NinjaGirl/Idle__004.png
+images/NinjaGirl/Idle__005.png
+images/NinjaGirl/Idle__006.png
+images/NinjaGirl/Idle__007.png
+images/NinjaGirl/Idle__008.png
+images/NinjaGirl/Idle__009.png

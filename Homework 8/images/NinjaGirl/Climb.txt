@@ -1,0 +1,10 @@
+images/Ninjagirl/Climb__000.png
+mages/Ninjagirl/Climb__001.png
+mages/Ninjagirl/Climb__002.png
+mages/Ninjagirl/Climb__003.png
+mages/Ninjagirl/Climb__004.png
+mages/Ninjagirl/Climb__005.png
+mages/Ninjagirl/Climb__006.png
+mages/Ninjagirl/Climb__007.png
+mages/Ninjagirl/Climb__008.png
+mages/Ninjagirl/Climb__009.png

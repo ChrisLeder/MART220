@@ -1,0 +1,10 @@
+images/NinjaGirl/Glide__000.png
+images/NinjaGirl/Glide__001.png
+images/NinjaGirl/Glide__002.png
+images/NinjaGirl/Glide__003.png
+images/NinjaGirl/Glide__004.png
+images/NinjaGirl/Glide__005.png
+images/NinjaGirl/Glide__006.png
+images/NinjaGirl/Glide__007.png
+images/NinjaGirl/Glide__008.png
+images/NinjaGirl/Glide__009.png

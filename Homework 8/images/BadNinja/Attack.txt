@@ -1,0 +1,10 @@
+images/BadNinja/Attack__000.png
+images/BadNinja/Attack__001.png
+images/BadNinja/Attack__002.png
+images/BadNinja/Attack__003.png
+images/BadNinja/Attack__004.png
+images/BadNinja/Attack__005.png
+images/BadNinja/idle__006.png
+images/BadNinja/idle__007.png
+images/BadNinja/idle__008.png
+images/BadNinja/idle__009.png
