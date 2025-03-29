@@ -44,6 +44,7 @@ class animationImage
        //this is the Sprite HitBox
        this.currentAnimation.width = 50;
        this.currentAnimation.height = 75;
+       
     }
     updatePosition(direction)
     {
@@ -55,6 +56,7 @@ class animationImage
         this.currentAnimation.frameDelay = 5;
         this.currentAnimation.scale = 0.25;
         this.currentAnimation.changeAnimation(animationType);
+        this.currentAnimation.rotationSpeed = 0;
 
         if (animationType =='run' && this.direction == 'forward')
             {

@@ -14,6 +14,7 @@ var timeRemaining = 0;
 var counter = 0;
 var timeLeft = 30;;
 var bgmusic;
+var rotationSpeed = 0;
 
 function preload()
 {
@@ -60,7 +61,7 @@ function setup()
 
     //compact way to add someImage
     someImage =createSprite(450, 200, 50, 75, 'static');
-    someImage.img = "./images/BadNinja/Idle_000.png";
+    someImage.img = "./images/BadNinja/Idle__000.png";
     someImage.scale = 0.25;
     someImage.diameter = 150;
 
