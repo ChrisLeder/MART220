@@ -43,7 +43,7 @@ function setup()
             }
         }
 
-    /*setInterval(updateIndex, 50);
+    setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
         myFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
         foodArray.push(myFood);}
@@ -51,7 +51,7 @@ function setup()
         for (let i = 0; i < 5; i++) {
             myFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
             foodArray.push(myFood);
-    }*/
+    }
 
 
 
@@ -60,15 +60,17 @@ function setup()
     myAnimation.loadAnimation('run', runPaths);
 
     //compact way to add someImage
-    someImage =createSprite(450, 200, 50, 75, 'static');
+    for (let i = 0; i <3; i ++){
+    someImage =createSprite(random(100, 600), random(100, 600), 50, 75, 'static');
     someImage.img = "./images/BadNinja/Idle__000.png";
     someImage.scale = 0.25;
     someImage.diameter = 150;
+    }
 
     bgSound();
 }
 
-/*function loadFood()
+function loadFood()
     {
 for (let i = 0; i < foodArray.length; i++) 
         {
@@ -82,7 +84,7 @@ for (let i = 0; i < foodArray.length; i++)
             foodArray[i].y= random(100, 600);
             }
             
-    }*/
+    }
     
     
     function bgSound(){
@@ -97,9 +99,9 @@ function draw()
 {
     background(13, 152, 34);
 
-    //loadFood();    
+    loadFood();    
 
-        //setInterval(foodFight, 5000);
+        setInterval(foodFight, 5000);
         
     
 
@@ -202,7 +204,7 @@ function draw()
         myAnimation.drawAnimation('idle');
     }
 
-   /* {
+    {
         for (let k = 0; k < foodArray.length; k++) 
             {
             //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
@@ -242,5 +244,5 @@ function draw()
             ) { i = 0; }
         }
         
-    */
+    }
 }
