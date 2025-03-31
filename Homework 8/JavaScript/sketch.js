@@ -70,6 +70,13 @@ function setup()
     bgSound();
 }
 
+function updateIndex() 
+        {
+            i += 1;
+            if (i > result.length - 1
+            ) { i = 0; }
+        }
+
 function loadFood()
     {
 for (let i = 0; i < foodArray.length; i++) 
@@ -237,12 +244,7 @@ function draw()
             
         }
         
-        function updateIndex() 
-        {
-            i += 1;
-            if (i > result.length - 1
-            ) { i = 0; }
-        }
+        
         
     }
 }
