@@ -9,10 +9,9 @@ class food
         this.r =r;
         this.g =g;
         this.b =b;
-    }
-    draw()
-    {
+        this.food;
         fill(this.r, this.g, this.b);
-        circle(this.x, this.y, 15);
+        this.food = new Sprite(this.x, this.y,20);
     }
+   
 }

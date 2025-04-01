@@ -33,11 +33,9 @@ function setup()
 {
     createCanvas(800, 650);
 
-    setInterval(foodFight, 5000);
-      
+    setInterval(foodFight, 5000);      
 
-    setInterval(countDown, 1000);
-        
+    setInterval(countDown, 1000);        
         
         function countDown() {
             counter++;
@@ -48,21 +46,21 @@ function setup()
                 
             }
         }
-    //setInterval(updateIndex, 50);
-    for (let i = 0; i < 5; i++) {
-        myGoodFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
-        foodArray.push(myGoodFood);}
-        myGoodFood.diameter = 15;
-       
+    
+    for (let i = 0; i < 5; i++) 
+        {
+        myGoodFood = new food(random(100, 600), random(100, 600), 34, 86, 214);       
+        foodArray.push(myGoodFood);
+        //myGoodFood.diameter = 25
+        ;
+        }       
 
-        for (let i = 0; i < 5; i++) {
-            myBadFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
-            foodArray.push(myBadFood);
-            myBadFood.diameter = 15;
-       
-    }
-
-
+    for (let i = 0; i < 5; i++) 
+        {
+        myBadFood = new food(random(100, 600), random(100, 600),  100, 140, 43);
+        foodArray.push(myBadFood);
+        //myBadFood.diameter = 25;                  
+        }
 
     myAnimation =new animationImage(0, 0, 50, 75);
     myAnimation.loadAnimation('idle', idlePaths);
@@ -75,7 +73,17 @@ function setup()
     someImage.scale = 0.25;
     someImage.diameter = 150;
     }
-    function foodFight(){
+    bgSound();
+    foodFight();
+}
+function bgSound(){
+    bgmusic.play();
+    bgmusic.loop();
+    bgmusic.setVolume(0.1);
+    userStartAudio();        
+}
+    function foodFight()
+    {
         for (let i = 0; i < foodArray.length; i++) 
             {
             foodArray[i].x = random(100, 600);
@@ -85,63 +93,32 @@ function setup()
     }
     function eatFood()
     {
-        for (let i = foodArray.length - 1; i >= 0; i--) {
-            if (myAnimation.isColliding(foodArray[i])) {
-                if (foodArray[i].r === 34 && foodArray[i].g === 86 && foodArray[i].b === 214) {
+        for (let i = foodArray.length - 1; i >= 0; i--) 
+            {
+            if (myAnimation.isColliding(foodArray[i].food)) 
+                {
+                if (foodArray[i].r === 34   &&  
+                    foodArray[i].g === 86 &&
+                    foodArray[i].b === 214)
+                {                    
                     eat.play();
                     score++;
                 } else {
                     retch.play();
                     score--;
                 }
-                foodArray.splice(i, 1); // Remove the food that was eaten
+                foodArray[i].food.remove(); // Remove the food that was eaten
             }
-        }}
-        
-       /* if(myAnimation.isColliding(myGoodFood)) {
-            eat.play();
-            score = score + 1;
         }
-
-        else if(myAnimation.isColliding(myBadFood))
-            retch.play();
-            score= score - 1;
-
-            {
-                foodArray.splice(foodArray[i], 1);
-            }
-        }*/
-    
-
-    bgSound();
-   
-}
-
+    }
 
 if (score < 0) {
     score = 0;
-}
-
-/*function updateIndex() 
-        {
-            i += 1;
-            if (i > result.length - 1
-            ) { i = 0; }
-        }*/
-    
-    
-    function bgSound(){
-        bgmusic.play();
-        bgmusic.loop();
-        bgmusic.setVolume(0.1);
-        userStartAudio();
-        
-    }
+}  
 
 function draw()
 {
-    background(13, 152, 34);
-           
+    background(13, 152, 34);           
 
      //Score
      fill(214, 35, 20);
@@ -166,54 +143,48 @@ function draw()
      text(timeLeft, 705, 55);
 
      //Game Text
-     if (timeLeft== 0) {
+     if (timeLeft== 0) 
+        {
          stroke(15);
          fill(214, 35, 20);        
          textSize(60);
          text('Game Over', 225, 60);
-     }    
-     if (score == 0){
+        }    
+     if (score == 0)
+        {
          stroke(15);
          fill(214, 35, 20);        
          textSize(80);
          text('You Died!!!', 225, 400); 
          textSize(60);
          text('Game Over', 225, 60);
-     }
-     if (score == 10){
+        }
+     if (score == 10)
+        {
          stroke(15);
          fill(214, 35, 20);        
          textSize(80);
          text('You Win!!!', 225, 400); 
          textSize(60);
-         text('Game Over', 225, 60);}
+         text('Game Over', 225, 60);
+        }
 
-         for (let i = 0; i < 10; i++) 
-            {            
-            foodArray[i].draw();
-            }
-
-
-
+       
     if(kb.pressing('d'))
     {
         if(kb.pressing('d'))
-            {
-                myAnimation.updatePosition('forward');
-                myAnimation.drawAnimation('run');
-                if(myAnimation.isColliding(someImage))
+        {
+            myAnimation.updatePosition('forward');
+            myAnimation.drawAnimation('run');
+            if(myAnimation.isColliding(someImage))
                 {
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
                 }
-
-                
-
-
             }
         
     }
-    else if(kb.pressing('a'))
+        else if(kb.pressing('a'))
         {
             myAnimation.updatePosition('reverse');
             myAnimation.drawAnimation('run');
@@ -221,23 +192,19 @@ function draw()
                 {
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
-                }
-
-                
+                }                
         }
         else if(kb.pressing('w'))
             {
-                myAnimation.updatePosition('up');
-                myAnimation.drawAnimation('run');
-                if(myAnimation.isColliding(someImage))
+            myAnimation.updatePosition('up');
+            myAnimation.drawAnimation('run');
+            if(myAnimation.isColliding(someImage))
                 {
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
                 }
-            }
-        
-    
-    else if(kb.pressing('s'))
+            }    
+        else if(kb.pressing('s'))
         {
             myAnimation.updatePosition('down');
             myAnimation.drawAnimation('run');
@@ -251,22 +218,10 @@ function draw()
     {
         myAnimation.drawAnimation('idle');
     }
+    eatFood();
+   
 
     if (timeLeft <= 0 || score <= 0 || score >= 10) {
         return;
     }
-
-    /*{
-        
-            if ( timeLeft== 0 || score == 0){
-                keyIsPressed = false;
-            }
-            if (score == 10){
-                keyIsPressed = false;
-            }
-            
-        }*/
-        
-            
-        
-    }
+}
