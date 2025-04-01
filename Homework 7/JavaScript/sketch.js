@@ -2,7 +2,7 @@
 
 var animation = [];
 var runAnimation = [];
-var i = 0;
+let i = 0;
 var myNinjagirl;
 var myFood;
 var x = 100;

@@ -15,6 +15,8 @@ var counter = 0;
 var timeLeft = 30;;
 var bgmusic;
 var rotationSpeed = 0;
+var i = 0;
+
 
 function preload()
 {
@@ -36,15 +38,13 @@ function setup()
 
     setInterval(countDown, 1000);
         var interval = setInterval(countDown, 1000);
-        var timesUp = setInterval(timeRemaining);
+        
         function countDown() {
             counter++;
             timeLeft--;
-            if  (timeLeft== 0) {
-                clearInterval(interval);
-                clearInterval(timesUp);
-                bgmusic.stop();
-                myAnimation.drawAnimation('idle');
+            if  (timeLeft <= 0) {
+                timeLeft = 0;
+                bgmusic.stop();               
                 myAnimation.velocity.x == 0;
                 myAnimation.velocity.y == 0;
             }
@@ -84,20 +84,34 @@ function setup()
             }
             
     }
-    function eatFood(){
-        if(myAnimation.isColliding(myGoodFood)) {
+    function eatFood()
+    {
+        for (let i = foodArray.length - 1; i >= 0; i--) {
+            if (myAnimation.isColliding(foodArray[i])) {
+                if (foodArray[i] === myGoodFood) {
+                    eat.play();
+                    score++;
+                } else {
+                    retch.play();
+                    score--;
+                }
+                foodArray.splice(i, 1); // Remove the food that was eaten
+            }
+        }}
+        
+       /* if(myAnimation.isColliding(myGoodFood)) {
             eat.play();
             score = score + 1;
         }
 
-        elseif(myAnimation.isColliding(myBadFood))
+        else if(myAnimation.isColliding(myBadFood))
             retch.play();
             score= score - 1;
 
             {
                 foodArray.splice(foodArray[i], 1);
             }
-        }
+        }*/
     
 
     bgSound();
@@ -247,6 +261,8 @@ function draw()
             
         }*/
         
-        
+            if (score < 0) {
+                score = 0;
+            }
         
     }
