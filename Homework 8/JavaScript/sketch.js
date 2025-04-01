@@ -30,6 +30,8 @@ function preload()
 function setup()
 {
     createCanvas(800, 650);
+
+    setInterval(foodFight, 5000);
       
 
     setInterval(countDown, 1000);
@@ -45,12 +47,12 @@ function setup()
 
     setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
-        myFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
-        foodArray.push(myFood);}
+        myGoodFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
+        foodArray.push(myGoodFood);}
 
         for (let i = 0; i < 5; i++) {
-            myFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
-            foodArray.push(myFood);
+            myBadFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
+            foodArray.push(myBadFood);
     }
 
 
@@ -66,7 +68,14 @@ function setup()
     someImage.scale = 0.25;
     someImage.diameter = 150;
     }
-
+    function foodFight(){
+        for (let i = 0; i < foodArray.length; i++) 
+            {
+            foodArray[i].x = random(100, 600);
+            foodArray[i].y= random(100, 600);
+            }
+            
+    }
     
 
     bgSound();
@@ -175,6 +184,9 @@ function draw()
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
                 }
+                //if(myAnimation.isColliding(myGoodFood)) 
+
+
             }
         
     }
