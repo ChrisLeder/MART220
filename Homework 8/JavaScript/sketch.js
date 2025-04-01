@@ -67,6 +67,8 @@ function setup()
     someImage.diameter = 150;
     }
 
+    
+
     bgSound();
 }
 
@@ -77,21 +79,24 @@ function updateIndex()
             ) { i = 0; }
         }
 
-function loadFood()
-    {
-for (let i = 0; i < foodArray.length; i++) 
-        {
-        foodArray[i].draw();
+/*function loadFood()
+{
+
+for (let i = 0; i <5; i ++){
+    goodFoodImage =createSprite(random(100, 600), random(100, 600), 15,);
+    goodFoodImage.img = this.food();
+    goodFoodImage.scale = 1;
+    goodFoodImage.diameter = 15;
+    }
+
+    for (let i = 0; i <5; i ++){
+        badFoodImage =createSprite(random(100, 600), random(100, 600), 50, );
+        badFoodImage.img = this.food(random(100, 600), random(100,600),100,140,43,15);
+        badFoodImage.scale = 1;
+        badFoodImage.diameter = 15;
         }
-    }
-    function foodFight(){
-        for (let i = 0; i < foodArray.length; i++) 
-            {
-            foodArray[i].x = random(100, 600);
-            foodArray[i].y= random(100, 600);
-            }
-            
-    }
+    }*/
+  
     
     
     function bgSound(){
@@ -106,11 +111,7 @@ function draw()
 {
     background(13, 152, 34);
 
-    loadFood();    
-
-        setInterval(foodFight, 5000);
-        
-    
+    //loadFood();           
 
      //Score
      fill(214, 35, 20);
@@ -155,6 +156,11 @@ function draw()
          text('You Win!!!', 225, 400); 
          textSize(60);
          text('Game Over', 225, 60);}
+
+         for (let i = 0; i < 10; i++) {
+            
+            foodArray[i].draw();
+    }
 
 
 
@@ -212,29 +218,7 @@ function draw()
     }
 
     {
-        for (let k = 0; k < foodArray.length; k++) 
-            {
-            //if (animation[i].hasCollided(foodArray[k].x, foodArray[k].y, 10, 10)) 
-            if(collideRectCircle(animation[i].x, animation[i].y, animation[i].imageWidth, animation[i].imageHeight, foodArray[k].x, foodArray[k].y, 10, 10 ))
-                {
-                    if (foodArray[k].r==34){
-                        eat.play();
-                        score = score + 1;
-                    }
-                    else {
-                        retch.play();
-                        score= score - 1;
-
-                    }
-
-                foodArray.splice(k, 1);               
-                
-                }
-            
-             else 
-            {
-                animation[i].draw();
-            } 
+        
             if ( timeLeft== 0 || score == 0){
                 keyIsPressed = false;
             }
@@ -247,4 +231,3 @@ function draw()
         
         
     }
-}

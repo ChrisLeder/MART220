@@ -13,6 +13,6 @@ class food
     draw()
     {
         fill(this.r, this.g, this.b);
-        circle(this.x, this.y, 25);
+        circle(this.x, this.y, 10);
     }
 }
