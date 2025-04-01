@@ -36,15 +36,19 @@ function setup()
 
     setInterval(countDown, 1000);
         var interval = setInterval(countDown, 1000);
-    
+        var timesUp = setInterval(timeRemaining);
         function countDown() {
             counter++;
             timeLeft--;
             if  (timeLeft== 0) {
                 clearInterval(interval);
+                clearInterval(timesUp);
+                bgmusic.stop();
+                myAnimation.drawAnimation('idle');
+                myAnimation.velocity.x == 0;
+                myAnimation.velocity.y == 0;
             }
         }
-
     setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
         myGoodFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
@@ -76,9 +80,24 @@ function setup()
             }
             
     }
+    function eatFood(){
+        if(myAnimation.isColliding(myGoodFood)) {
+            eat.play();
+            score = score + 1;
+        }
+
+        elseif(myAnimation.isColliding(myBadFood))
+            retch.play();
+            score= score - 1;
+
+            {
+                foodArray.splice(k, 1);
+            }
+        }
     
 
     bgSound();
+   
 }
 
 function updateIndex() 
@@ -86,26 +105,7 @@ function updateIndex()
             i += 1;
             if (i > result.length - 1
             ) { i = 0; }
-        }
-
-/*function loadFood()
-{
-
-for (let i = 0; i <5; i ++){
-    goodFoodImage =createSprite(random(100, 600), random(100, 600), 15,);
-    goodFoodImage.img = this.food();
-    goodFoodImage.scale = 1;
-    goodFoodImage.diameter = 15;
-    }
-
-    for (let i = 0; i <5; i ++){
-        badFoodImage =createSprite(random(100, 600), random(100, 600), 50, );
-        badFoodImage.img = this.food(random(100, 600), random(100,600),100,140,43,15);
-        badFoodImage.scale = 1;
-        badFoodImage.diameter = 15;
-        }
-    }*/
-  
+        } 
     
     
     function bgSound(){
@@ -119,8 +119,7 @@ for (let i = 0; i <5; i ++){
 function draw()
 {
     background(13, 152, 34);
-
-    //loadFood();           
+           
 
      //Score
      fill(214, 35, 20);
@@ -143,6 +142,7 @@ function draw()
      rect(680, 30, 70, 30);
      fill(0);
      text(timeLeft, 705, 55);
+
      //Game Text
      if (timeLeft== 0) {
          stroke(15);
@@ -166,10 +166,10 @@ function draw()
          textSize(60);
          text('Game Over', 225, 60);}
 
-         for (let i = 0; i < 10; i++) {
-            
+         for (let i = 0; i < 10; i++) 
+            {            
             foodArray[i].draw();
-    }
+            }
 
 
 
@@ -184,7 +184,8 @@ function draw()
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
                 }
-                //if(myAnimation.isColliding(myGoodFood)) 
+
+                
 
 
             }
@@ -229,7 +230,9 @@ function draw()
         myAnimation.drawAnimation('idle');
     }
 
-    {
+    
+
+    /*{
         
             if ( timeLeft== 0 || score == 0){
                 keyIsPressed = false;
@@ -238,7 +241,7 @@ function draw()
                 keyIsPressed = false;
             }
             
-        }
+        }*/
         
         
         
