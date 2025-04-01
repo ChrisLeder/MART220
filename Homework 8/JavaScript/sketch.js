@@ -37,7 +37,7 @@ function setup()
       
 
     setInterval(countDown, 1000);
-        var interval = setInterval(countDown, 1000);
+        
         
         function countDown() {
             counter++;
@@ -45,11 +45,10 @@ function setup()
             if  (timeLeft <= 0) {
                 timeLeft = 0;
                 bgmusic.stop();               
-                myAnimation.velocity.x == 0;
-                myAnimation.velocity.y == 0;
+                
             }
         }
-    setInterval(updateIndex, 50);
+    //setInterval(updateIndex, 50);
     for (let i = 0; i < 5; i++) {
         myGoodFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
         foodArray.push(myGoodFood);}
@@ -88,7 +87,7 @@ function setup()
     {
         for (let i = foodArray.length - 1; i >= 0; i--) {
             if (myAnimation.isColliding(foodArray[i])) {
-                if (foodArray[i] === myGoodFood) {
+                if (foodArray[i].r === 34 && foodArray[i].g === 86 && foodArray[i].b === 214) {
                     eat.play();
                     score++;
                 } else {
@@ -118,12 +117,17 @@ function setup()
    
 }
 
-function updateIndex() 
+
+if (score < 0) {
+    score = 0;
+}
+
+/*function updateIndex() 
         {
             i += 1;
             if (i > result.length - 1
             ) { i = 0; }
-        } 
+        }*/
     
     
     function bgSound(){
@@ -248,7 +252,9 @@ function draw()
         myAnimation.drawAnimation('idle');
     }
 
-    
+    if (timeLeft <= 0 || score <= 0 || score >= 10) {
+        return;
+    }
 
     /*{
         
@@ -261,8 +267,6 @@ function draw()
             
         }*/
         
-            if (score < 0) {
-                score = 0;
-            }
+            
         
     }
