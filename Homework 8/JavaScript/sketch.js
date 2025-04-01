@@ -53,10 +53,14 @@ function setup()
     for (let i = 0; i < 5; i++) {
         myGoodFood = new food(random(100, 600), random(100, 600),  34, 86, 214, 50);
         foodArray.push(myGoodFood);}
+        myGoodFood.diameter = 15;
+       
 
         for (let i = 0; i < 5; i++) {
             myBadFood = new food(random(100, 600), random(100, 600),  100, 140, 43, 50);
             foodArray.push(myBadFood);
+            myBadFood.diameter = 15;
+       
     }
 
 
@@ -91,7 +95,7 @@ function setup()
             score= score - 1;
 
             {
-                foodArray.splice(k, 1);
+                foodArray.splice(foodArray[i], 1);
             }
         }
     
