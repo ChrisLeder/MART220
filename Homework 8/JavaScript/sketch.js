@@ -16,7 +16,7 @@ var timeLeft = 30;;
 var bgmusic;
 var rotationSpeed = 0;
 var i = 0;
-
+var isRunning= false;
 
 function preload()
 {
@@ -35,21 +35,13 @@ function setup()
 
     setInterval(foodFight, 5000);      
 
-    setInterval(countDown, 1000);        
+           
         
-        function countDown() {
-            counter++;
-            timeLeft--;
-            if  (timeLeft <= 0) {
-                timeLeft = 0;
-                bgmusic.stop();               
-                
-            }
-        }
+        
     
     for (let i = 0; i < 5; i++) 
         {
-        myGoodFood = new food(random(100, 600), random(100, 600), 34, 86, 214);       
+        myGoodFood = new food(random(100, 600), random(100, 600), true);       
         foodArray.push(myGoodFood);
         //myGoodFood.diameter = 25
         ;
@@ -57,7 +49,7 @@ function setup()
 
     for (let i = 0; i < 5; i++) 
         {
-        myBadFood = new food(random(100, 600), random(100, 600),  100, 140, 43);
+        myBadFood = new food(random(100, 600), random(100, 600), false);
         foodArray.push(myBadFood);
         //myBadFood.diameter = 25;                  
         }
@@ -86,8 +78,8 @@ function bgSound(){
     {
         for (let i = 0; i < foodArray.length; i++) 
             {
-            foodArray[i].x = random(100, 600);
-            foodArray[i].y= random(100, 600);
+            foodArray[i].food.x = random(100, 600);
+            foodArray[i].food.y= random(100, 600);
             }
             
     }
@@ -96,10 +88,8 @@ function bgSound(){
         for (let i = foodArray.length - 1; i >= 0; i--) 
             {
             if (myAnimation.isColliding(foodArray[i].food)) 
-                {
-                if (foodArray[i].r === 34   &&  
-                    foodArray[i].g === 86 &&
-                    foodArray[i].b === 214)
+                {console.log(foodArray[i].isGood)
+                if (foodArray[i].isGood)
                 {                    
                     eat.play();
                     score++;
@@ -115,6 +105,16 @@ function bgSound(){
 if (score < 0) {
     score = 0;
 }  
+function countDown() {
+    counter++;
+    timeLeft--;
+    isRunning = true;
+    if  (timeLeft <= 0) {
+        timeLeft = 0;
+        bgmusic.stop();               
+        
+    }
+}
 
 function draw()
 {
@@ -169,8 +169,8 @@ function draw()
          text('Game Over', 225, 60);
         }
 
-       
-    if(kb.pressing('d'))
+      MoveSprite(); 
+    /*if(kb.pressing('d'))
     {
         if(kb.pressing('d'))
         {
@@ -217,11 +217,69 @@ function draw()
     else
     {
         myAnimation.drawAnimation('idle');
-    }
+    }*/
     eatFood();
    
 
     if (timeLeft <= 0 || score <= 0 || score >= 10) {
         return;
     }
+}
+function MoveSprite()
+{
+    if (!isRunning && (myAnimation.currentAnimation.velocity.x !=0 || myAnimation.currentAnimation.velocity.y != 0))       
+        {
+            var time = setInterval(countDown, 1000);
+            isRunning = true;
+        } 
+    
+    if(kb.pressing('d'))
+        {
+            if(kb.pressing('d'))
+            {
+                myAnimation.updatePosition('forward');
+                myAnimation.drawAnimation('run');
+                if(myAnimation.isColliding(someImage))
+                    {
+                        myAnimation.drawAnimation('idle');
+                        myAnimation.updatePosition('idle');
+                    }
+                }
+            
+        }
+            else if(kb.pressing('a'))
+            {
+                myAnimation.updatePosition('reverse');
+                myAnimation.drawAnimation('run');
+                if(myAnimation.isColliding(someImage))
+                    {
+                        myAnimation.drawAnimation('idle');
+                        myAnimation.updatePosition('idle');
+                    }                
+            }
+            else if(kb.pressing('w'))
+                {
+                myAnimation.updatePosition('up');
+                myAnimation.drawAnimation('run');
+                if(myAnimation.isColliding(someImage))
+                    {
+                        myAnimation.drawAnimation('idle');
+                        myAnimation.updatePosition('idle');
+                    }
+                }    
+            else if(kb.pressing('s'))
+            {
+                myAnimation.updatePosition('down');
+                myAnimation.drawAnimation('run');
+                if(myAnimation.isColliding(someImage))
+                    {
+                        myAnimation.drawAnimation('idle');
+                        myAnimation.updatePosition('idle');
+                    }
+                }
+        else
+        {
+            myAnimation.drawAnimation('idle');
+        }
+
 }

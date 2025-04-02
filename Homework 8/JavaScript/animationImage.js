@@ -57,6 +57,7 @@ class animationImage
         this.currentAnimation.scale = 0.25;
         this.currentAnimation.changeAnimation(animationType);
         this.currentAnimation.rotationSpeed = 0;
+        this.currentAnimation.rotationLock = true;
 
         if (animationType =='run' && this.direction == 'forward')
             {
