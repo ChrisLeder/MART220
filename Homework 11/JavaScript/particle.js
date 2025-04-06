@@ -25,6 +25,8 @@ class Particle {
     }
   
   }
+  function createParticles()
+  {
 
   for (let i= 0; i <5; i++)
     {
@@ -38,4 +40,5 @@ class Particle {
         if (particles[i].finished())
             particles.splice(i, 1);
     }
+  }
   

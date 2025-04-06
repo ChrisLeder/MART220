@@ -1,4 +1,4 @@
-//This is my sketch.js page for p5play
+//This is my sketch.js page for integrating Particle systems
 
 var idlePaths = [];
 var runPaths = [];
@@ -37,22 +37,8 @@ function setup()
 {
     createCanvas(800, 650);
 
-    setInterval(foodFight, 5000); 
-    
-    /*for (let i= 0; i <5; i++)
-        {
-            let p = new Particle();
-            particles.push(p);
-        }
-        for (let i = particles.length - 1; i>=0; i--)
-        {
-            particles[i].update();
-            particles[i].show();
-            if (particles[i].finished())
-                particles.splice(i, 1);
-        }*/
-    
-        
+    setInterval(foodFight, 5000);  
+           
     
     for (let i = 0; i < 5; i++) 
         {
@@ -115,6 +101,21 @@ function bgSound(){
                 }
                 foodArray[i].food.remove(); // Remove the food that was eaten
             }
+        }
+    }
+    function createParticles()
+    {
+    for (let i= 0; i <5; i++)
+        {
+            let p = new Particle();
+            particles.push(p);
+        }
+        for (let i = particles.length - 1; i>=0; i--)
+        {
+            particles[i].update();
+            particles[i].show();
+            if (particles[i].finished())
+                particles.splice(i, 1);
         }
     }
 
