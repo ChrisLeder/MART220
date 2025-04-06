@@ -2,6 +2,7 @@
 
 var idlePaths = [];
 var runPaths = [];
+var attackPaths = [];
 var myAnimation;
 var myRunAnimation;
 var someImage;
@@ -17,6 +18,8 @@ var bgmusic;
 var rotationSpeed = 0;
 var i = 0;
 var isRunning= false;
+var health = 100;
+const particles = [];
 
 function preload()
 {
@@ -27,16 +30,28 @@ function preload()
     //Character animation
     idlePaths = loadStrings("../images/NinjaGirl/idle.txt");
     runPaths = loadStrings("../images/NinjaGirl/run.txt");
+    attackPaths = loadStrings("../images/NinjaGirl/attack.txt");
 }
 
 function setup()
 {
     createCanvas(800, 650);
 
-    setInterval(foodFight, 5000);      
-
-           
-        
+    setInterval(foodFight, 5000); 
+    
+    /*for (let i= 0; i <5; i++)
+        {
+            let p = new Particle();
+            particles.push(p);
+        }
+        for (let i = particles.length - 1; i>=0; i--)
+        {
+            particles[i].update();
+            particles[i].show();
+            if (particles[i].finished())
+                particles.splice(i, 1);
+        }*/
+    
         
     
     for (let i = 0; i < 5; i++) 
@@ -57,6 +72,7 @@ function setup()
     myAnimation =new animationImage(0, 0, 50, 75);
     myAnimation.loadAnimation('idle', idlePaths);
     myAnimation.loadAnimation('run', runPaths);
+    myAnimation.loadAnimation('attack', attackPaths);
 
     //compact way to add someImage
     for (let i = 0; i <3; i ++){
@@ -169,55 +185,8 @@ function draw()
          text('Game Over', 225, 60);
         }
 
-      MoveSprite(); 
-    /*if(kb.pressing('d'))
-    {
-        if(kb.pressing('d'))
-        {
-            myAnimation.updatePosition('forward');
-            myAnimation.drawAnimation('run');
-            if(myAnimation.isColliding(someImage))
-                {
-                    myAnimation.drawAnimation('idle');
-                    myAnimation.updatePosition('idle');
-                }
-            }
-        
-    }
-        else if(kb.pressing('a'))
-        {
-            myAnimation.updatePosition('reverse');
-            myAnimation.drawAnimation('run');
-            if(myAnimation.isColliding(someImage))
-                {
-                    myAnimation.drawAnimation('idle');
-                    myAnimation.updatePosition('idle');
-                }                
-        }
-        else if(kb.pressing('w'))
-            {
-            myAnimation.updatePosition('up');
-            myAnimation.drawAnimation('run');
-            if(myAnimation.isColliding(someImage))
-                {
-                    myAnimation.drawAnimation('idle');
-                    myAnimation.updatePosition('idle');
-                }
-            }    
-        else if(kb.pressing('s'))
-        {
-            myAnimation.updatePosition('down');
-            myAnimation.drawAnimation('run');
-            if(myAnimation.isColliding(someImage))
-                {
-                    myAnimation.drawAnimation('idle');
-                    myAnimation.updatePosition('idle');
-                }
-            }
-    else
-    {
-        myAnimation.drawAnimation('idle');
-    }*/
+    MoveSprite(); 
+    
     eatFood();
    
 
@@ -239,10 +208,13 @@ function MoveSprite()
             {
                 myAnimation.updatePosition('forward');
                 myAnimation.drawAnimation('run');
+                if (myGoodFood != null)
+                    {
                 if(myAnimation.isColliding(someImage))
                     {
                         myAnimation.drawAnimation('idle');
                         myAnimation.updatePosition('idle');
+                    }
                     }
                 }
             
@@ -251,32 +223,57 @@ function MoveSprite()
             {
                 myAnimation.updatePosition('reverse');
                 myAnimation.drawAnimation('run');
+                if (someImage != null)
+                    {
                 if(myAnimation.isColliding(someImage))
                     {
                         myAnimation.drawAnimation('idle');
                         myAnimation.updatePosition('idle');
-                    }                
+                    } 
+                }               
             }
             else if(kb.pressing('w'))
                 {
                 myAnimation.updatePosition('up');
                 myAnimation.drawAnimation('run');
-                if(myAnimation.isColliding(someImage))
+                if (someImage != null)
                     {
-                        myAnimation.drawAnimation('idle');
-                        myAnimation.updatePosition('idle');
-                    }
-                }    
-            else if(kb.pressing('s'))
-            {
-                myAnimation.updatePosition('down');
-                myAnimation.drawAnimation('run');
                 if(myAnimation.isColliding(someImage))
                     {
                         myAnimation.drawAnimation('idle');
                         myAnimation.updatePosition('idle');
                     }
                 }
+                }    
+            else if(kb.pressing('s'))
+            {
+                myAnimation.updatePosition('down');
+                myAnimation.drawAnimation('run');
+                if (someImage != null)
+                    {
+                if(myAnimation.isColliding(someImage))
+                    {
+                        myAnimation.drawAnimation('idle');
+                        myAnimation.updatePosition('idle');
+                    }
+                }
+                }
+            else if (kb.pressing('x'))
+            {
+                myAnimation.drawAnimation('attack');
+                if (myGoodFood != null)
+                    {
+                if (dist(myAnimation.getCurrentAnimation().position.x, myAnimation.getCurrentAnimation().position.y, myGoodFood.position.x, myGoodFood.position.y) < 200)
+                    {
+                        createParticles(myGoodFood.position.x, myGoodFood.position.y);
+                        health -= 1;
+                        if (health <= 0){
+                        myGoodFood.remove();
+                        myGoodFood = null;
+                        }
+                    }
+                }
+            }
         else
         {
             myAnimation.drawAnimation('idle');
