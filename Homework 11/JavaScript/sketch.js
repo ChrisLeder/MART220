@@ -19,8 +19,9 @@ var rotationSpeed = 0;
 var i = 0;
 var isRunning = false;
 var health = 10;
-const particles = [];
-someImageArray= [];
+var particles = [];
+//const particles = [];
+var someImageArray= [];
 
 function preload() {
     //sound
@@ -28,9 +29,9 @@ function preload() {
     eat = loadSound("Audio/yum.wav");
     retch = loadSound("Audio/retching.wav");
     //Character animation
-    idlePaths = loadStrings("../images/NinjaGirl/idle.txt");
-    runPaths = loadStrings("../images/NinjaGirl/run.txt");
-    attackPaths = loadStrings("../images/NinjaGirl/attack.txt");
+    idlePaths = loadStrings("../Data/NinjaGirl/Idle.txt");
+    runPaths = loadStrings("../Data/NinjaGirl/Run.txt");
+    attackPaths = loadStrings("../Data/NinjaGirl/Attack.txt");
 }
 
 function setup() {
@@ -41,34 +42,29 @@ function setup() {
     countDown();
 
     myAnimation = new animationImage(0, 0, 50, 75);
-    myAnimation.loadAnimation('idle', idlePaths);
-    myAnimation.loadAnimation('run', runPaths);
-    myAnimation.loadAnimation('attack', attackPaths);
+    myAnimation.loadAnimation("Idle", idlePaths);
+    myAnimation.loadAnimation("Run", runPaths);
+    myAnimation.loadAnimation("Attack", attackPaths);
 
     //compact way to add someImage
     for (let i = 0; i < 3; i++) {
         someImage = createSprite(random(100, 600), random(100, 600), 50, 75, 'static');
         someImage.img = "./images/BadNinja/Idle__000.png";
         someImage.scale = 0.25;
-        someImage.diameter = 150;
+        someImage.diameter = 150;   
     }
+
     bgSound();
     foodFight();
 
-
     for (let i = 0; i < 5; i++) {
         myGoodFood = new food(random(100, 600), random(100, 600), true);
-        foodArray.push(myGoodFood);
-        //myGoodFood.diameter = 25
-        ;
+        foodArray.push(myGoodFood);         
     }
 
     for (let i = 0; i < 5; i++) {
         myBadFood = new food(random(100, 600), random(100, 600), false);
         foodArray.push(myBadFood);
-        //myBadFood.diameter = 25; 
-       
-
     }
     function bgSound() {
         bgmusic.play();
@@ -76,18 +72,12 @@ function setup() {
         bgmusic.setVolume(0.1);
         userStartAudio();
     }
-
-
     function foodFight() {
         for (let i = 0; i < foodArray.length; i++) {
             foodArray[i].food.x = random(100, 600);
             foodArray[i].food.y = random(100, 600);
         }
-
     }
-
-
-
     if (score < 0) {
         score = 0;
     }
@@ -98,10 +88,8 @@ function setup() {
         if (timeLeft <= 0) {
             timeLeft = 0;
             bgmusic.stop();
-
         }
     }
-
 }
 
 function draw() {
@@ -172,13 +160,11 @@ function draw() {
             }
         }
     }
-
-
     if (timeLeft <= 0 || score <= 0 || score >= 10) {
         return;
     }
 
-    function createParticles() {
+    /*function createParticles() {
         for (let i = 0; i < 5; i++) {
             let p = new Particle();
             particles.push(p);
@@ -189,7 +175,7 @@ function draw() {
             if (particles[i].finished())
                 particles.splice(i, 1);
         }
-    }
+    }*/
 
 }
 function MoveSprite() {
@@ -246,8 +232,8 @@ function MoveSprite() {
         {       
         myAnimation.drawAnimation('attack');
         if (someImage != null) {
-            if (dist(myAnimation.currentAnimation.position.x, myAnimation.currentAnimation.position.y, someImage.position.x, someImage.position.y) < 200) {
-                createParticles(someImage.position.x, someImage.position.y);
+            if (dist(myAnimation.currentAnimation.position.x, myAnimation.currentAnimation.position.y, someImageArray[i].position.x, someImageArray[i].position.y) < 200) {
+                createParticles(someImageArray[i].position.x, someImageArray[i].position.y);
                 health -= 1;
                 createParticles();
                 if (health <= 0) {

@@ -7,7 +7,7 @@ class Particle {
       this.vy = random(-5, -1);
       this.alpha = 255;
     }
-  
+      
     finished() {
       return this.alpha < 0;
     }
