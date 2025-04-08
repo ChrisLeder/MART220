@@ -20,25 +20,10 @@ class Particle {
   
     show() {
       noStroke();      
-      fill(255, this.alpha);
+      fill(185, 12, 4, this.alpha);
       ellipse(this.x, this.y, 16);
     }
   
   }
-  function createParticles()
-  {
-
-  for (let i= 0; i <5; i++)
-    {
-        let p = new Particle();
-        particles.push(p);
-    }
-    for (let i = particles.length - 1; i>=0; i--)
-    {
-        particles[i].update();
-        particles[i].show();
-        if (particles[i].finished())
-            particles.splice(i, 1);
-    }
-  }
+  
   

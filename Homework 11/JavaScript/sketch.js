@@ -29,9 +29,9 @@ function preload() {
     eat = loadSound("Audio/yum.wav");
     retch = loadSound("Audio/retching.wav");
     //Character animation
-    idlePaths = loadStrings("../Data/NinjaGirl/Idle.txt");
-    runPaths = loadStrings("../Data/NinjaGirl/Run.txt");
-    attackPaths = loadStrings("../Data/NinjaGirl/Attack.txt");
+    idlePaths = loadStrings("../images/NinjaGirl/idle.txt");
+    runPaths = loadStrings("../images/NinjaGirl/run.txt");
+    attackPaths = loadStrings("../images/NinjaGirl/attack.txt");
 }
 
 function setup() {
@@ -46,7 +46,6 @@ function setup() {
     myAnimation.loadAnimation("Run", runPaths);
     myAnimation.loadAnimation("Attack", attackPaths);
 
-    //compact way to add someImage
     for (let i = 0; i < 3; i++) {
         someImage = createSprite(random(100, 600), random(100, 600), 50, 75, 'static');
         someImage.img = "./images/BadNinja/Idle__000.png";
@@ -142,7 +141,7 @@ function draw() {
     }
 
     MoveSprite();
-
+    
     eatFood();
 
     function eatFood() {
@@ -164,7 +163,7 @@ function draw() {
         return;
     }
 
-    /*function createParticles() {
+    function createParticles() {
         for (let i = 0; i < 5; i++) {
             let p = new Particle();
             particles.push(p);
@@ -175,7 +174,7 @@ function draw() {
             if (particles[i].finished())
                 particles.splice(i, 1);
         }
-    }*/
+    }
 
 }
 function MoveSprite() {
@@ -228,14 +227,13 @@ function MoveSprite() {
             }
         }
     }
-    else if (kb.pressing('x')) 
+    else if (kb.pressing('e')) 
         {       
         myAnimation.drawAnimation('attack');
         if (someImage != null) {
-            if (dist(myAnimation.currentAnimation.position.x, myAnimation.currentAnimation.position.y, someImageArray[i].position.x, someImageArray[i].position.y) < 200) {
+            if (dist(myAnimation.currentAnimation.position.x, myAnimation.currentAnimation.position.y, someImageArray[i].position.x, someImageArray[i].position.y) < 75) {
                 createParticles(someImageArray[i].position.x, someImageArray[i].position.y);
-                health -= 1;
-                createParticles();
+                health -= 1;                
                 if (health <= 0) {
                     someImage.remove();
                     someImage = null;
