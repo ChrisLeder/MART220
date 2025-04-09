@@ -18,7 +18,7 @@ var bgmusic;
 var rotationSpeed = 0;
 var i = 0;
 var isRunning = false;
-var health = 10;
+var health = 50;
 var particles = [];
 //const particles = [];
 var someImageArray= [];
@@ -29,9 +29,22 @@ function preload() {
     eat = loadSound("Audio/yum.wav");
     retch = loadSound("Audio/retching.wav");
     //Character animation
-    idlePaths = loadStrings("../images/NinjaGirl/idle.txt");
-    runPaths = loadStrings("../images/NinjaGirl/run.txt");
-    attackPaths = loadStrings("../images/NinjaGirl/attack.txt");
+    idlePaths = loadStrings("../images/Ninjagirl/idle.txt");
+    
+    runPaths = loadStrings("../images/Ninjagirl/run.txt");
+    attackPaths = loadStrings("../images/Ninjagirl/attack.txt");
+}
+function createParticles(x, y) {
+    for (let i = 0; i < 5; i++) {
+        let p = new Particle(x, y);
+        particles.push(p);
+    }
+    for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update();
+        particles[i].show();
+        if (particles[i].finished())
+            particles.splice(i, 1);
+    }
 }
 
 function setup() {
@@ -41,16 +54,21 @@ function setup() {
 
     countDown();
 
+
+
+    
     myAnimation = new animationImage(0, 0, 50, 75);
-    myAnimation.loadAnimation("Idle", idlePaths);
-    myAnimation.loadAnimation("Run", runPaths);
-    myAnimation.loadAnimation("Attack", attackPaths);
+    myAnimation.loadAnimation("idle", idlePaths);
+    myAnimation.loadAnimation("run", runPaths);
+    myAnimation.loadAnimation("attack", attackPaths);
 
     for (let i = 0; i < 3; i++) {
-        someImage = createSprite(random(100, 600), random(100, 600), 50, 75, 'static');
-        someImage.img = "./images/BadNinja/Idle__000.png";
+        someImage = new BadNinja(random(100,600), random(100, 600), "./images/BadNinja/Idle__000.png");
+        someImageArray.push(someImage);
+        /*someImage = createSprite(random(100, 600), random(100, 600), 50, 75, 'static');
+        someImage.img = "";
         someImage.scale = 0.25;
-        someImage.diameter = 150;   
+        someImage.diameter = 150;*/   
     }
 
     bgSound();
@@ -93,6 +111,8 @@ function setup() {
 
 function draw() {
     background(13, 152, 34);
+
+    
 
     //Score
     fill(214, 35, 20);
@@ -163,18 +183,7 @@ function draw() {
         return;
     }
 
-    function createParticles() {
-        for (let i = 0; i < 5; i++) {
-            let p = new Particle();
-            particles.push(p);
-        }
-        for (let i = particles.length - 1; i >= 0; i--) {
-            particles[i].update();
-            particles[i].show();
-            if (particles[i].finished())
-                particles.splice(i, 1);
-        }
-    }
+    
 
 }
 function MoveSprite() {
@@ -188,55 +197,60 @@ function MoveSprite() {
         if (kb.pressing('d')) {
             myAnimation.updatePosition('forward');
             myAnimation.drawAnimation('run');
-            if (someImage != null) {
-                if (myAnimation.isColliding(someImage)) {
+            /*for (let i = 0; i <someImageArray.length; i++){
+            if (someImageArray[i].someImage != null) {
+                if (myAnimation.isColliding(someImageArray[i].someImage)) {
                     myAnimation.drawAnimation('idle');
                     myAnimation.updatePosition('idle');
                 }
             }
+        }*/
         }
 
     }
     else if (kb.pressing('a')) {
         myAnimation.updatePosition('reverse');
         myAnimation.drawAnimation('run');
-        if (someImage != null) {
-            if (myAnimation.isColliding(someImage)) {
+        /*if (someImage != null) {
+            if (myAnimation.isColliding(someImageArray[i])) {
                 myAnimation.drawAnimation('idle');
                 myAnimation.updatePosition('idle');
             }
-        }
+        }*/
     }
     else if (kb.pressing('w')) {
         myAnimation.updatePosition('up');
         myAnimation.drawAnimation('run');
-        if (someImage != null) {
-            if (myAnimation.isColliding(someImage)) {
+        /*if (someImage != null) {
+            if (myAnimation.isColliding(someImageArray[i])) {
                 myAnimation.drawAnimation('idle');
                 myAnimation.updatePosition('idle');
             }
-        }
+        }*/
     }
     else if (kb.pressing('s')) {
         myAnimation.updatePosition('down');
         myAnimation.drawAnimation('run');
-        if (someImage != null) {
-            if (myAnimation.isColliding(someImage)) {
+        /*if (someImage != null) {
+            if (myAnimation.isColliding(someImageArray[i])) {
                 myAnimation.drawAnimation('idle');
                 myAnimation.updatePosition('idle');
             }
-        }
+        }*/
     }
     else if (kb.pressing('e')) 
         {       
         myAnimation.drawAnimation('attack');
-        if (someImage != null) {
-            if (dist(myAnimation.currentAnimation.position.x, myAnimation.currentAnimation.position.y, someImageArray[i].position.x, someImageArray[i].position.y) < 75) {
-                createParticles(someImageArray[i].position.x, someImageArray[i].position.y);
+        for (let i = 0; i <someImageArray.length; i++)
+            {
+            if (dist(myAnimation.currentAnimation.position.x, myAnimation.currentAnimation.position.y, someImageArray[i].someImage.position.x, someImageArray[i].someImage.position.y) < 100) {
+                createParticles(someImageArray[i].someImage.position.x, someImageArray[i].someImage.position.y);
+                console.log(someImageArray[i].someImage.position.x)
                 health -= 1;                
                 if (health <= 0) {
-                    someImage.remove();
-                    someImage = null;
+                    someImageArray[i].someImage.remove();
+                    particles = [];
+                                     
                 }
             }
         }

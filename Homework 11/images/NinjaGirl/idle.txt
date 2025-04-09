@@ -1,4 +1,3 @@
-
 images/Ninjagirl/Idle__000.png
 images/Ninjagirl/Idle__001.png
 images/Ninjagirl/Idle__002.png
