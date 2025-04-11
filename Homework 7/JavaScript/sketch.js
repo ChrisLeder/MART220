@@ -29,14 +29,14 @@ function preload()
     //eat food sound
     eat = loadSound("Audio/yum.wav");
     //eat bad food sound
-    retch = loadSound("Audio/retching.wav");
+    bubblePop = loadSound("Audio/Pop.mp3");
     //animation strings
     result = loadStrings('Data/idle.txt');
     runresult = loadStrings('Data/run.txt');
 }
 
 function setup() 
-{
+{d
      createCanvas(800, 650);    
 
     setInterval(foodFight, 5000);
@@ -191,7 +191,7 @@ function draw()
                         score = score + 1;
                     }
                     else{
-                        retch.play();
+                        bubblePop.play();
                         score= score - 1;
 
                     }
