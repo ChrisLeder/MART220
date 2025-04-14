@@ -58,7 +58,19 @@ function draw() {
         rotateY(frameCount * -0.01);             
         texture(texturedCanvas);
         cylinder(200, 150, 48, 1, true, true);
-        pop();
+        pop();        
+        
+       /* if (mouseIsPressed)
+            {
+            push();
+            translate(random.x, random.y);
+            rotateY(frameCount * -0.01);             
+            texture(texturedCanvas);
+            cylinder(200, 150, 48, 1, true, true);
+            pop();
+            }*/
+        
+            
         }
         //torus
         {

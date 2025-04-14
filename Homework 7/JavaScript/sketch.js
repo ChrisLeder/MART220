@@ -36,7 +36,7 @@ function preload()
 }
 
 function setup() 
-{d
+{
      createCanvas(800, 650);    
 
     setInterval(foodFight, 5000);
