@@ -1,8 +1,12 @@
-/*class threeDShape {
-    constructor(x, y, z) {
+class threeDShape {
+    constructor(x, y, z, speedX, speedY, speedZ) {
       this.x = x;
       this.y = y;
       this.z = z;
+      this.speedX = speedX;
+      this.speedY = speedY;
+      this.speedZ = speedZ;
+
     }
   
     moveShape()
@@ -13,4 +17,4 @@
         rotateZ(frameCount * this.speedZ);
        
     }
-  }*/
+  }

@@ -12,9 +12,9 @@ var cylX = -400;
 var cylY = -150;
 var coneModel;
 
-//var shape1, shape2;
-//var shapes = [];
-//var currentNumber = 0;
+var shape1, shape2;
+var shapes = [];
+var currentNumber = 0;
 
 
 function preload()
@@ -51,14 +51,11 @@ function setup() {
     texturedCanvas1.textFont(myFont);
     texturedCanvas1.text("Chris Leder", texturedCanvas1.width / 2, texturedCanvas1.height / 2);
 
-    //shape1 = new Torus(400, -150, 0, 0.04, 0.05, 0.001, 50, 30);
-    //shape2 = new Cube(400, 200, 0, 0.001, 0.02, 0.03, 100, 100, 100);
+    shape1 = new Torus(100, -250, 0, 0.04, 0.05, 0.001, 50, 30, "../images/image2.jpg");
+    shape2 = new Box(400, 200, 0, 0.001, 0.02, 0.03, 100, 100, 100, "../images/image3.jpg");
 
-    //shapes[0]= shape1;
-    //shapes[1]= shape2;
-
-
-    
+    shapes[0]= shape1;
+    shapes[1]= shape2;    
 }
 
 function draw() {
@@ -125,7 +122,8 @@ function draw() {
             box(100,);
             pop();
 
-            //shapes[currentNumber].draw();
+            shapes[currentNumber].draw();
+            console.log (currentNumber);
             
     
 }

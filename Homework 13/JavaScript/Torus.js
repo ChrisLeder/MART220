@@ -1,11 +1,10 @@
-/*class Torus extends threeDShape
+class Torus extends threeDShape 
 {
-
-class Torus extends threeDShape {
-    constructor(x, y, z, speedX, speedY, speedZ, radius, tubeRadius) {
+    constructor(x, y, z, speedX, speedY, speedZ, radius, tubeRadius,path) {
         super(x, y, z, speedX, speedY, speedZ);
         this.radius = radius;
         this.tubeRadius = tubeRadius;
+        this.img2= loadImage(path);
     }
 
     draw() {
@@ -15,4 +14,4 @@ class Torus extends threeDShape {
         torus(this.radius, this.tubeRadius);
         pop();
     }
-}*/
+}
