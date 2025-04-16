@@ -45,7 +45,7 @@ function draw() {
     fill('172, 160, 12');
     text("Chris Leder", -width/20, -height/30, 0);    
     texture(img4);
-    plane(200, 150);
+    //plane(200, 150);
     pop();
     }
 

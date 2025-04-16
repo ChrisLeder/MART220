@@ -1,11 +1,11 @@
 
-images/NinjaGirl/Dead__000.png
-images/NinjaGirl/Dead__001.png
-images/NinjaGirl/Dead__002.png
-images/NinjaGirl/Dead__003.png
-images/NinjaGirl/Dead__004.png
-images/NinjaGirl/Dead__005.png
-images/NinjaGirl/Dead__006.png
-images/NinjaGirl/Dead__007.png
-images/NinjaGirl/Dead__008.png
-images/NinjaGirl/Dead__009.png
+images/Ninjagirl/Dead__000.png
+images/Ninjagirl/Dead__001.png
+images/Ninjagirl/Dead__002.png
+images/Ninjagirl/Dead__003.png
+images/Ninjagirl/Dead__004.png
+images/Ninjagirl/Dead__005.png
+images/Ninjagirl/Dead__006.png
+images/Ninjagirl/Dead__007.png
+images/Ninjagirl/Dead__008.png
+images/Ninjagirl/Dead__009.png

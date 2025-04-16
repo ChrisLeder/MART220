@@ -4,6 +4,8 @@
 
 var baseImage;
 var texturesCanvas;
+var sphereX= -400;
+var sphereY= 100;
 
 
 function preload()
@@ -36,7 +38,7 @@ function setup() {
 function draw() {
     background(180, 164, 163);
     
-    normalMaterial(); {  
+    normalMaterial();   
     //plane with text
     push();
     rotateX(frameCount * 0.01);
@@ -49,31 +51,32 @@ function draw() {
     texture(img4);
     plane(200, 150);
     pop();
-    }
+    
 
     //cylider with text 
-    {               
-        push();
-        translate(-400,-150);
-        rotateY(frameCount * -0.01);             
+                   
+        push();        
+        rotateY(frameCount * -0.01);
+        translate(-400,-150);             
         texture(texturedCanvas);
         cylinder(200, 150, 48, 1, true, true);
         pop();        
         
-       /* if (mouseIsPressed)
+     if (mouseIsPressed)
             {
             push();
-            translate(random.x, random.y);
+            translate(random(400), random(100), random(-100));
             rotateY(frameCount * -0.01);             
             texture(texturedCanvas);
             cylinder(200, 150, 48, 1, true, true);
             pop();
-            }*/
+            
+    }
         
             
-        }
+        
         //torus
-        {
+        
             push();
             translate(400,-150);
             rotateX(frameCount * 0.01);
@@ -82,27 +85,42 @@ function draw() {
             texture(img1);
             torus(50, 30);
             pop();
-            }
+            
 
             //Sphere
-        {
+        
             push();
-            translate(-400, 200);
+            translate(sphereX, sphereY);
             rotateX(frameCount * 0.01);
             rotateY(frameCount * 0.01);
             rotateZ(frameCount * 0.01);                  
             texture(img2);
             sphere(100,);
             pop();
-            }
+
+            if (mouseIsPressed)
+                {
+
+                sphereX=random(400);
+                sphereY = random(200);
+
+                /*push();
+                translate(random(), random(400), random(100));
+                rotateY(frameCount * -0.01);             
+                texture(img2);
+                sphere(200);
+                pop();*/
+                
+        }
+            
             //box
-        {
+        
             push();
             translate(400, 200);
             rotateX(frameCount * 0.01);                  
             texture(img3);
             box(100,);
             pop();
-            }
+            
     
 }
