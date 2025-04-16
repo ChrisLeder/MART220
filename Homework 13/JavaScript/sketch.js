@@ -3,11 +3,14 @@
 
 
 var baseImage;
+var baseImage1
 var texturesCanvas;
+var texturedCanvas1;
 var sphereX= -400;
 var sphereY= 100;
-
-
+var cylX = -400;
+var cylY = -150;
+var coneModel;
 function preload()
 {
 img1 = loadImage("../images/image1.jpg");
@@ -15,110 +18,97 @@ img2 = loadImage("../images/image2.jpg");
 img3 = loadImage("../images/image3.jpg");
 img4 = loadImage("../images/image4.jpg");
 img5 = loadImage("../images/image5.jpg");
+
 baseImage = loadImage("../images/image5.jpg");
+baseImage1 = loadImage("../images/image4.jpg");
+coneModel = loadModel("../JavaScript/Cone.obj", true);    
 
+myFont = loadFont('Fonts/Rye-Regular.ttf');
 
-    myFont = loadFont('Fonts/Rye-Regular.ttf');
 }
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
 
     texturedCanvas = createGraphics(512, 256);
     texturedCanvas.image(baseImage, 0, 0, texturedCanvas.width, texturedCanvas.height);
-    texturedCanvas.fill(126, 12, 112);
+    texturedCanvas.fill(0,0,255);
     texturedCanvas.textAlign(CENTER, CENTER);
-    texturedCanvas.textSize(50);
+    texturedCanvas.textSize(40);
     texturedCanvas.textFont(myFont);
-    texturedCanvas.text("And So It Begins...", texturedCanvas.width / 2, texturedCanvas.height / 2);
+    texturedCanvas.text("And So It Begins.pt II", texturedCanvas.width / 2, texturedCanvas.height / 2);
+
+    texturedCanvas1 = createGraphics(512, 256);
+    texturedCanvas1.image(baseImage1, 0, 0, texturedCanvas1.width, texturedCanvas1.height);
+    texturedCanvas1.fill(255,0,0);
+    texturedCanvas1.textAlign(CENTER, CENTER);
+    texturedCanvas1.textSize(60);
+    texturedCanvas1.textFont(myFont);
+    texturedCanvas1.text("Chris Leder", texturedCanvas1.width / 2, texturedCanvas1.height / 2);
 
     
     
 }
 
 function draw() {
-    background(180, 164, 163);
-    
-    normalMaterial();   
-    //plane with text
-    push();
-    rotateX(frameCount * 0.01);
-    rotateY(frameCount * 0.01);
-    rotateZ(frameCount * 0.01);    
-    textFont(myFont);
-    textSize(50);
-    fill('172, 160, 12');
-    text("Chris Leder", -width/20, -height/30, 0);    
-    texture(img4);
-    plane(200, 150);
-    pop();
-    
+    background(180, 164, 163);    
+    normalMaterial();  
 
-    //cylider with text 
-                   
+        push();
+        scale(2.5);        
+        rotateX(frameCount * 0.01); 
+        rotateY(frameCount * 0.01);
+        rotateZ(frameCount * 0.01);
+        texture(img2);     
+        model(coneModel);
+        pop();
+    
+    //cylider with text                    
         push();        
-        rotateY(frameCount * -0.01);
-        translate(-400,-150);             
+        rotateY(frameCount * -0.015);
+        translate(cylX, cylY);             
         texture(texturedCanvas);
         cylinder(200, 150, 48, 1, true, true);
         pop();        
         
      if (mouseIsPressed)
             {
-            push();
-            translate(random(400), random(100), random(-100));
-            rotateY(frameCount * -0.01);             
-            texture(texturedCanvas);
-            cylinder(200, 150, 48, 1, true, true);
-            pop();
-            
-    }
+            cylX=random(400);
+            cylY = random(100); 
+            }            
         
-            
-        
-        //torus
-        
-            push();
-            translate(400,-150);
-            rotateX(frameCount * 0.01);
+        //torus        
+            push();            
+            rotateX(frameCount * 0.04);
             rotateY(frameCount * 0.01);
-            rotateZ(frameCount * 0.01);                  
+            rotateZ(frameCount * 0.1);  
+            translate(400,-150);                
             texture(img1);
             torus(50, 30);
             pop();
             
 
-            //Sphere
-        
-            push();
-            translate(sphereX, sphereY);
-            rotateX(frameCount * 0.01);
+            //Sphere        
+            push();            
+            rotateX(frameCount * 0.05);
             rotateY(frameCount * 0.01);
-            rotateZ(frameCount * 0.01);                  
-            texture(img2);
+            rotateZ(frameCount * 0.01);
+            translate(sphereX, sphereY);                
+            texture(texturedCanvas1);
             sphere(100,);
             pop();
 
             if (mouseIsPressed)
                 {
-
                 sphereX=random(400);
                 sphereY = random(200);
-
-                /*push();
-                translate(random(), random(400), random(100));
-                rotateY(frameCount * -0.01);             
-                texture(img2);
-                sphere(200);
-                pop();*/
-                
-        }
+                }
             
-            //box
-        
-            push();
-            translate(400, 200);
-            rotateX(frameCount * 0.01);                  
+            //box        
+            push();            
+            rotateX(frameCount * 0.001);
+            rotateZ(frameCount * 0.03);                  
             texture(img3);
+            translate(400, 200);
             box(100,);
             pop();
             

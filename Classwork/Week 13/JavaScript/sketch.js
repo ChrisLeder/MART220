@@ -20,7 +20,7 @@ img4 = loadImage("../images/image4.jpg");
 img5 = loadImage("../images/image5.jpg");
 
 baseImage = loadImage("../images/image5.jpg");
-baseImage1 = loadImage("../images/image4.jpg");
+baseImage1 = loadImage("../images/image1.jpg");
 coneModel = loadModel("../JavaScript/Cone.obj", true);    
 
 myFont = loadFont('Fonts/Rye-Regular.ttf');
@@ -58,23 +58,13 @@ function draw() {
         rotateX(frameCount * 0.01); 
         rotateY(frameCount * 0.01);
         rotateZ(frameCount * 0.01);
-        texture(img2);     
+        texture(img1);     
         model(coneModel);
         pop();
-    /*plane with text
-    push();
-    rotateX(frameCount * 0.01);
-    rotateY(frameCount * 0.01);
-    rotateZ(frameCount * 0.01);    
-        
-    texture(img4);
-    plane(200, 150);
-    pop();*/
     
-
     //cylider with text                    
         push();        
-        rotateY(frameCount * -0.005);
+        rotateY(frameCount * -0.015);
         translate(cylX, cylY);             
         texture(texturedCanvas);
         cylinder(200, 150, 48, 1, true, true);
@@ -87,23 +77,22 @@ function draw() {
             }            
         
         //torus        
-            push();
-            translate(400,-150);
-            rotateX(frameCount * 0.02);
+            push();            
+            rotateX(frameCount * 0.04);
             rotateY(frameCount * 0.01);
-            rotateZ(frameCount * 0.1);                  
-            texture(img1);
+            rotateZ(frameCount * 0.1);  
+            translate(400,-150);                
+            texture(img2);
             torus(50, 30);
             pop();
             
 
             //Sphere        
-            push();
-            translate(sphereX, sphereY);
+            push();            
             rotateX(frameCount * 0.05);
             rotateY(frameCount * 0.01);
             rotateZ(frameCount * 0.01);
-                             
+            translate(sphereX, sphereY);                
             texture(texturedCanvas1);
             sphere(100,);
             pop();
@@ -115,11 +104,11 @@ function draw() {
                 }
             
             //box        
-            push();
-            translate(400, 200);
-            rotateX(frameCount * 0.1);
+            push();            
+            rotateX(frameCount * 0.01);
             rotateZ(frameCount * 0.3);                  
             texture(img3);
+            translate(400, 200);
             box(100,);
             pop();
             
