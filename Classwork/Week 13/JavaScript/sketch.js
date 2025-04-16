@@ -20,7 +20,7 @@ img4 = loadImage("../images/image4.jpg");
 img5 = loadImage("../images/image5.jpg");
 
 baseImage = loadImage("../images/image5.jpg");
-baseImage1 = loadImage("../images/image1.jpg");
+baseImage1 = loadImage("../images/image4.jpg");
 coneModel = loadModel("../JavaScript/Cone.obj", true);    
 
 myFont = loadFont('Fonts/Rye-Regular.ttf');
@@ -55,8 +55,8 @@ function draw() {
 
         push();
         scale(2.5);        
-        rotateX(frameCount * 0.01); 
-        rotateY(frameCount * 0.01);
+        rotateX(frameCount * 0.02); 
+        rotateY(frameCount * 0.003);
         rotateZ(frameCount * 0.01);
         texture(img1);     
         model(coneModel);
@@ -79,8 +79,8 @@ function draw() {
         //torus        
             push();            
             rotateX(frameCount * 0.04);
-            rotateY(frameCount * 0.01);
-            rotateZ(frameCount * 0.1);  
+            rotateY(frameCount * 0.05);
+            rotateZ(frameCount * 0.001);  
             translate(400,-150);                
             texture(img2);
             torus(50, 30);
@@ -90,8 +90,8 @@ function draw() {
             //Sphere        
             push();            
             rotateX(frameCount * 0.05);
-            rotateY(frameCount * 0.01);
-            rotateZ(frameCount * 0.01);
+            rotateY(frameCount * 0.03);
+            rotateZ(frameCount * 0.001);
             translate(sphereX, sphereY);                
             texture(texturedCanvas1);
             sphere(100,);
@@ -105,8 +105,8 @@ function draw() {
             
             //box        
             push();            
-            rotateX(frameCount * 0.01);
-            rotateZ(frameCount * 0.3);                  
+            rotateX(frameCount * 0.001);
+            rotateZ(frameCount * 0.03);                  
             texture(img3);
             translate(400, 200);
             box(100,);
